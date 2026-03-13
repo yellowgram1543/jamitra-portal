@@ -30,7 +30,7 @@ function SchemeRecommender() {
     e.preventDefault();
 
     const response = await fetch(
-      `http://localhost:5000/api/schemes?occupation=${formData.occupation}`
+      `https://jamitra-portal.onrender.com/api/schemes?occupation=${formData.occupation}`
     );
 
     const data = await response.json();

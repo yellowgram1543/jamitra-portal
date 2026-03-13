@@ -32,7 +32,7 @@ function ReportCorruption() {
 
     try {
 
-      const response = await fetch("http://localhost:5000/api/reports", {
+      const response = await fetch("https://jamitra-portal.onrender.com/api/reports", {
 
         method: "POST",
 
