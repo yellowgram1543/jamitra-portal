@@ -7,6 +7,7 @@ const applicationSchema = new mongoose.Schema({
   mobile: String,
   address: String,
   certificateType: String,
+  document: String,
   status: {
     type: String,
     default: "Pending"

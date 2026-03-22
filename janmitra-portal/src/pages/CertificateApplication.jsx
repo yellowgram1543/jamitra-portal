@@ -46,15 +46,18 @@ function CertificateApplication() {
 
     try {
 
-      // Only stringify text fields, excluding the File object
-      const { document, ...textData } = formData;
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach(key => {
+        if (key === 'document' && formData[key]) {
+          formDataToSend.append('document', formData[key]);
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
 
       const response = await fetch(`${API_BASE_URL}/applications`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(textData)
+        body: formDataToSend
       });
 
       const data = await response.json();

@@ -1,16 +1,22 @@
 import express from "express";
 import Application from "../models/Application.js";
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/", upload.single("document"), async (req, res) => {
+  try {
+    const applicationData = {
+      ...req.body,
+      document: req.file ? `/uploads/${req.file.filename}` : null
+    };
 
-  const application = new Application(req.body);
-
-  await application.save();
-
-  res.json(application);
-
+    const application = new Application(applicationData);
+    await application.save();
+    res.json(application);
+  } catch (error) {
+    res.status(500).json({ message: "Error saving application", error: error.message });
+  }
 });
 
 router.get("/", async (req, res) => {

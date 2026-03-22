@@ -1,24 +1,22 @@
 import express from "express";
 import Report from "../models/Report.js";
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
-router.post("/", async (req,res)=>{
+router.post("/", upload.single("photo"), async (req, res) => {
+  try {
+    const reportData = {
+      ...req.body,
+      photo: req.file ? `/uploads/${req.file.filename}` : null
+    };
 
-  try{
-
-    const report = new Report(req.body);
-
+    const report = new Report(reportData);
     await report.save();
-
     res.json(report);
-
-  }catch(error){
-
-    res.status(500).json({error:error.message});
-
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-
 });
 
 router.get("/", async (req,res)=>{

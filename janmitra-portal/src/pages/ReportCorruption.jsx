@@ -46,21 +46,18 @@ function ReportCorruption() {
     setError(null);
 
     try {
-      // NOTE: Current backend expects JSON. JSON.stringify cannot handle File objects.
-      // We will send the text data, and for a real app, we'd use FormData + Multer on backend.
-      const dataToSubmit = {
-        issueType: formData.issueType,
-        location: formData.location,
-        description: formData.description,
-        // photo is skipped for now as JSON can't carry File objects
-      };
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach(key => {
+        if (key === 'photo' && formData[key]) {
+          formDataToSend.append('photo', formData[key]);
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
 
       const response = await fetch(`${API_BASE_URL}/reports`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dataToSubmit)
+        body: formDataToSend
       });
 
       if (!response.ok) {

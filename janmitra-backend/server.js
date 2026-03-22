@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import applicationRoutes from "./routes/applicationRoutes.js";
 import documentRoutes from "./routes/documentRoutes.js";
@@ -16,8 +18,12 @@ mongoose.connect(process.env.MONGO_URI)
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/applications", applicationRoutes);
 app.use("/api/documents", documentRoutes);
