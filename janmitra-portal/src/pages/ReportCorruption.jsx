@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { 
   ShieldAlert, 
   AlertTriangle, 
@@ -67,9 +68,11 @@ function ReportCorruption() {
       }
 
       setSubmitted(true);
+      toast.success(t.reportSubmittedTitle || "Report Submitted Successfully!");
     } catch (error) {
       console.error("Error submitting report:", error);
       setError(t.errorFetching || "An error occurred while submitting. Please try again.");
+      toast.error("Failed to submit report. Please try again.");
     } finally {
       setLoading(false);
     }

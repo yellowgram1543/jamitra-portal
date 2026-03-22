@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { 
   ClipboardSignature, 
   User, 
@@ -61,10 +62,12 @@ function CertificateApplication() {
       console.log(data);
 
       setSubmitted(true);
+      toast.success(t.appSaved || "Application Submitted Successfully!");
 
     } catch (error) {
 
       console.error("Error submitting application:", error);
+      toast.error("Failed to submit application. Please try again.");
 
     }
 

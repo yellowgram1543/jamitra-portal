@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { 
   Search, 
   ClipboardList, 
@@ -67,10 +68,16 @@ function TrackApplication() {
       setApplications(filtered);
 
       setShowResults(true);
+      if (filtered.length > 0) {
+        toast.success(`Found ${filtered.length} applications.`);
+      } else {
+        toast.error("No applications found for this Aadhaar number.");
+      }
 
     } catch (error) {
 
       console.error("Error fetching applications:", error);
+      toast.error("Error fetching applications. Please try again.");
 
     }
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { 
   Search, 
   Briefcase, 
@@ -56,9 +57,15 @@ function SchemeRecommender() {
       const data = await response.json();
       setSchemes(data);
       setShowResults(true);
+      if (data.length > 0) {
+        toast.success(`${data.length} ${t.recommendedSchemes || "Schemes Recommended"}`);
+      } else {
+        toast.error(t.noSchemesFound || "No schemes found for this occupation.");
+      }
     } catch (err) {
       console.error("Error submitting request:", err);
       setError(t.errorFetching);
+      toast.error(t.errorFetching || "Failed to fetch schemes.");
     } finally {
       setLoading(false);
     }
