@@ -17,35 +17,44 @@ function SchemeRecommender() {
 
   const [showResults, setShowResults] = useState(false);
   const [schemes, setSchemes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setShowResults(false);
 
-    const response = await fetch(
-      `https://jamitra-portal.onrender.com/api/schemes?occupation=${formData.occupation}`
-    );
+    try {
+      const response = await fetch(
+        `https://jamitra-portal.onrender.com/api/schemes?occupation=${formData.occupation}`
+      );
 
-    const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Failed to fetch");
+      }
 
-    setSchemes(data);
-
-    setShowResults(true);
-
+      const data = await response.json();
+      setSchemes(data);
+      setShowResults(true);
+    } catch (err) {
+      console.error("Error submitting request:", err);
+      setError(t.errorFetching);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-brand-surface font-sans">
-
       <Header />
 
       {/* Hero Section */}
@@ -72,6 +81,7 @@ function SchemeRecommender() {
                   required
                   onChange={handleChange}
                   className="input-field"
+                  value={formData.occupation}
                 >
                   <option value="">{t.selectOccupation}</option>
                   <option value="farmer">{t.farmer}</option>
@@ -92,6 +102,7 @@ function SchemeRecommender() {
                   onChange={handleChange}
                   className="input-field"
                   placeholder="e.g. 50000"
+                  value={formData.income}
                 />
               </div>
 
@@ -106,6 +117,7 @@ function SchemeRecommender() {
                   onChange={handleChange}
                   className="input-field"
                   placeholder="e.g. 25"
+                  value={formData.age}
                 />
               </div>
 
@@ -120,6 +132,7 @@ function SchemeRecommender() {
                   onChange={handleChange}
                   className="input-field"
                   placeholder="Enter your state"
+                  value={formData.state}
                 />
               </div>
 
@@ -134,6 +147,7 @@ function SchemeRecommender() {
                   onChange={handleChange}
                   className="input-field"
                   placeholder="Enter your district"
+                  value={formData.district}
                 />
               </div>
             </div>
@@ -141,11 +155,16 @@ function SchemeRecommender() {
             <div className="pt-4 text-center">
               <button
                 type="submit"
-                className="btn-primary w-full md:w-auto px-12"
+                disabled={loading}
+                className={`btn-primary w-full md:w-auto px-12 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                {t.findSchemesBtn}
+                {loading ? t.loading : t.findSchemesBtn}
               </button>
             </div>
+
+            {error && (
+              <p className="text-red-600 text-center font-medium mt-4">{error}</p>
+            )}
           </form>
         </div>
       </main>
@@ -157,32 +176,39 @@ function SchemeRecommender() {
             {t.recommendedSchemes}
           </h3>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {schemes.map((scheme, index) => (
-              <div
-                key={index}
-                className="card-elevated flex flex-col"
-              >
-                <div className="mb-4">
-                   <span className="badge bg-brand-blue/10 text-brand-blue">Scheme</span>
+          {schemes.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {schemes.map((scheme, index) => (
+                <div
+                  key={index}
+                  className="card-elevated flex flex-col"
+                >
+                  <div className="mb-4">
+                     <span className="badge bg-brand-blue/10 text-brand-blue">Scheme</span>
+                  </div>
+                  <h4 className="text-xl font-display font-bold mb-3 text-gray-900">
+                    {scheme.title}
+                  </h4>
+                  <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                    {scheme.description}
+                  </p>
+                  <button className="btn-primary py-2 text-sm w-full">
+                    {t.learnMore}
+                  </button>
                 </div>
-                <h4 className="text-xl font-display font-bold mb-3 text-gray-900">
-                  {scheme.title}
-                </h4>
-                <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
-                  {scheme.description}
-                </p>
-                <button className="btn-primary py-2 text-sm w-full">
-                  {t.learnMore}
-                </button>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 card-elevated bg-gray-50 border-none">
+              <p className="text-xl text-gray-600 font-medium">
+                {t.noSchemesFound}
+              </p>
+            </div>
+          )}
         </section>
       )}
 
       <Footer />
-
     </div>
   );
 }

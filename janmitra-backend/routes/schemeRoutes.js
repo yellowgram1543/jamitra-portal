@@ -4,18 +4,22 @@ import Scheme from "../models/Scheme.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-
   const { occupation } = req.query;
 
-  if (occupation) {
-    const schemes = await Scheme.find({ occupation });
-    return res.json(schemes);
+  try {
+    if (occupation) {
+      // Use case-insensitive regex for occupation matching
+      const schemes = await Scheme.find({ 
+        occupation: { $regex: new RegExp(`^${occupation}$`, 'i') } 
+      });
+      return res.json(schemes);
+    }
+
+    const schemes = await Scheme.find();
+    res.json(schemes);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching schemes", error: error.message });
   }
-
-  const schemes = await Scheme.find();
-
-  res.json(schemes);
-
 });
 
 export default router;

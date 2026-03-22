@@ -76,6 +76,9 @@ const translations = {
     findSchemesBtn: "Find Schemes",
     recommendedSchemes: "Recommended Schemes",
     learnMore: "Learn More",
+    noSchemesFound: "No schemes found for your selection.",
+    loading: "Finding schemes...",
+    errorFetching: "Error fetching schemes. Please try again later.",
 
     // Track Application
     trackAppTitle: "Track Your Applications",
@@ -187,6 +190,9 @@ const translations = {
     findSchemesBtn: "योजनाएं खोजें",
     recommendedSchemes: "अनुशंसित योजनाएं",
     learnMore: "और जानें",
+    noSchemesFound: "आपके चयन के लिए कोई योजना नहीं मिली।",
+    loading: "योजनाएं खोजी जा रही हैं...",
+    errorFetching: "योजनाएं प्राप्त करने में त्रुटि। कृपया बाद में पुनः प्रयास करें।",
 
     // Track Application
     trackAppTitle: "अपने आवेदन ट्रैक करें",
@@ -298,6 +304,9 @@ const translations = {
     findSchemesBtn: "ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ",
     recommendedSchemes: "ಶಿಫಾರಸು ಮಾಡಿದ ಯೋಜನೆಗಳು",
     learnMore: "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
+    noSchemesFound: "ನಿಮ್ಮ ಆಯ್ಕೆಗೆ ಯಾವುದೇ ಯೋಜನೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+    loading: "ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ...",
+    errorFetching: "ಯೋಜನೆಗಳನ್ನು ಪಡೆಯುವಲ್ಲಿ ದೋಷ. ದಯವಿಟ್ಟು ನಂತರ ಪ್ರಯತ್ನಿಸಿ.",
 
     // Track Application
     trackAppTitle: "ನಿಮ್ಮ ಅರ್ಜಿಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ",
