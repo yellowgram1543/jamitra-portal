@@ -224,30 +224,30 @@ function CertificateApplication() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
 
           <div>
-            <h4 className="font-semibold mb-2">About JanMitra</h4>
+            <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
             <p className="text-sm">
-              A digital platform helping rural citizens access government services easily.
+              {t.aboutDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Help & Support</h4>
+            <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
             <p className="text-sm">
-              User guides and citizen assistance.
+              {t.helpDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Panchayat Contact</h4>
+            <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
             <p className="text-sm">
-              Contact your local village office for support.
+              {t.panchayatDesc}
             </p>
           </div>
 
         </div>
 
         <div className="text-center pb-4 text-sm">
-          JanMitra – Bringing Digital Government Services to Every Village.
+          {t.footerTagline}
         </div>
 
       </footer>

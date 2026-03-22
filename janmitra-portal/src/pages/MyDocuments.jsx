@@ -88,11 +88,11 @@ function MyDocuments() {
       <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
 
         <h2 className="text-3xl font-bold mb-2">
-          My Government Documents
+          {t.myGovDocsTitle}
         </h2>
 
         <p className="text-lg">
-          Access personal IDs and store important records securely.
+          {t.myGovDocsDesc}
         </p>
 
       </section>
@@ -102,7 +102,7 @@ function MyDocuments() {
       <section className="max-w-6xl mx-auto py-12 px-6">
 
         <h3 className="text-2xl font-bold text-center mb-8 text-gray-700">
-          Personal ID Access
+          {t.personalIdAccess}
         </h3>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -132,7 +132,7 @@ function MyDocuments() {
                 rel="noreferrer"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
               >
-                Open DigiLocker
+                {t.openDigiLockerBtn}
               </a>
 
             </div>
@@ -148,12 +148,11 @@ function MyDocuments() {
       <section className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow text-center">
 
         <h3 className="text-xl font-semibold mb-4">
-          Access Verified Government Documents
+          {t.accessVerifiedDocsTitle}
         </h3>
 
         <p className="text-gray-600 mb-6">
-          View Aadhaar, PAN, Driving Licence, educational certificates and
-          other official documents securely through DigiLocker.
+          {t.accessVerifiedDocsDesc}
         </p>
 
         <a
@@ -162,7 +161,7 @@ function MyDocuments() {
           rel="noreferrer"
           className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded font-semibold"
         >
-          🔒 Open DigiLocker
+          🔒 {t.openDigiLockerBtn}
         </a>
 
       </section>
@@ -172,14 +171,14 @@ function MyDocuments() {
       <section className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow mt-12">
 
         <h3 className="text-xl font-semibold mb-4">
-          Upload Additional Documents
+          {t.uploadAddDocsTitle}
         </h3>
 
         <form onSubmit={handleUpload} className="space-y-4">
 
           <input
             type="text"
-            placeholder="Document Name (Land Record, Property Paper...)"
+            placeholder={t.docNamePlaceholder}
             value={docName}
             onChange={(e)=>setDocName(e.target.value)}
             className="w-full border p-3 rounded"
@@ -197,7 +196,7 @@ function MyDocuments() {
             type="submit"
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded"
           >
-            Upload Document
+            {t.uploadDocBtn}
           </button>
 
         </form>
@@ -209,13 +208,13 @@ function MyDocuments() {
       <section className="max-w-6xl mx-auto py-12 px-6">
 
         <h3 className="text-2xl font-bold text-center mb-8 text-gray-700">
-          Uploaded Documents
+          {t.uploadedDocsTitle}
         </h3>
 
         {documents.length === 0 ? (
 
           <p className="text-center text-gray-500">
-            No documents uploaded yet.
+            {t.noDocsYet}
           </p>
 
         ) : (
@@ -234,11 +233,11 @@ function MyDocuments() {
                 </h4>
 
                 <p className="text-sm text-gray-600">
-                  File: {doc.fileName}
+                  {t.fileLabel}{doc.fileName}
                 </p>
 
                 <p className="text-sm text-gray-500">
-                  Uploaded: {doc.date}
+                  {t.uploadedLabel}{doc.date}
                 </p>
 
               </div>
@@ -258,33 +257,30 @@ function MyDocuments() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
 
           <div>
-            <h4 className="font-semibold mb-2">About JanMitra</h4>
+            <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
             <p className="text-sm">
-              A digital platform helping rural citizens access government services easily.
+              {t.aboutDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Help & Support</h4>
+            <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
             <p className="text-sm">
-              Citizen assistance and documentation guides.
+              {t.helpDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Panchayat Office</h4>
+            <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
             <p className="text-sm">
-              Gram Panchayat Office  
-              Angondhalli Village  
-              Bengaluru Rural District  
-              Karnataka, India
+              {t.panchayatDesc}
             </p>
           </div>
 
         </div>
 
         <div className="text-center pb-4 text-sm">
-          JanMitra – Bringing Digital Government Services to Every Village.
+          {t.footerTagline}
         </div>
 
       </footer>

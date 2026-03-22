@@ -127,7 +127,7 @@ function ReportCorruption() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Location (Village / District)
+                {t.locationLabel}
               </label>
 
               <input
@@ -141,7 +141,7 @@ function ReportCorruption() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Description
+                {t.descriptionLabel}
               </label>
 
               <textarea
@@ -155,7 +155,7 @@ function ReportCorruption() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Upload Photo (optional)
+                {t.uploadPhotoOptional}
               </label>
 
               <input
@@ -170,7 +170,7 @@ function ReportCorruption() {
               type="submit"
               className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
             >
-              Submit Report
+              {t.submitReportBtn}
             </button>
 
           </form>
@@ -180,11 +180,11 @@ function ReportCorruption() {
           <div className="text-center p-6">
 
             <h3 className="text-xl font-bold text-green-600 mb-4">
-              Report Submitted
+              {t.reportSubmittedTitle}
             </h3>
 
             <p className="text-gray-700">
-              Your report has been recorded and will be forwarded to the district authority.
+              {t.reportSubmittedDesc}
             </p>
 
           </div>
@@ -200,30 +200,30 @@ function ReportCorruption() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
 
           <div>
-            <h4 className="font-semibold mb-2">About JanMitra</h4>
+            <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
             <p className="text-sm">
-              A digital platform helping rural citizens access government services easily.
+              {t.aboutDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Help & Support</h4>
+            <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
             <p className="text-sm">
-              User guides and citizen assistance.
+              {t.helpDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Panchayat Contact</h4>
+            <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
             <p className="text-sm">
-              Contact your local village office for support.
+              {t.panchayatDesc}
             </p>
           </div>
 
         </div>
 
         <div className="text-center pb-4 text-sm">
-          JanMitra – Bringing Digital Government Services to Every Village.
+          {t.footerTagline}
         </div>
 
       </footer>

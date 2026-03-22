@@ -72,11 +72,11 @@ function SchemeRecommender() {
       <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
 
         <h2 className="text-3xl font-bold mb-2">
-          Find Government Schemes for You
+          {t.findSchemesTitle}
         </h2>
 
         <p className="text-lg">
-          Enter your details to see eligible welfare schemes.
+          {t.findSchemesDesc}
         </p>
 
       </section>
@@ -89,7 +89,7 @@ function SchemeRecommender() {
 
           <div>
             <label className="block font-semibold mb-1">
-              Occupation
+              {t.occupation}
             </label>
 
             <select
@@ -98,17 +98,17 @@ function SchemeRecommender() {
               onChange={handleChange}
               className="w-full border p-3 rounded"
             >
-              <option value="">Select Occupation</option>
-              <option value="farmer">Farmer</option>
-              <option value="student">Student</option>
-              <option value="worker">Worker</option>
-              <option value="small-business-owner">Small Business Owner</option>
+              <option value="">{t.selectOccupation}</option>
+              <option value="farmer">{t.farmer}</option>
+              <option value="student">{t.student}</option>
+              <option value="worker">{t.worker}</option>
+              <option value="small-business-owner">{t.smallBusiness}</option>
             </select>
           </div>
 
           <div>
             <label className="block font-semibold mb-1">
-              Annual Income
+              {t.annualIncome}
             </label>
 
             <input
@@ -122,7 +122,7 @@ function SchemeRecommender() {
 
           <div>
             <label className="block font-semibold mb-1">
-              Age
+              {t.age}
             </label>
 
             <input
@@ -136,7 +136,7 @@ function SchemeRecommender() {
 
           <div>
             <label className="block font-semibold mb-1">
-              State
+              {t.state}
             </label>
 
             <input
@@ -150,7 +150,7 @@ function SchemeRecommender() {
 
           <div>
             <label className="block font-semibold mb-1">
-              District
+              {t.district}
             </label>
 
             <input
@@ -166,7 +166,7 @@ function SchemeRecommender() {
             type="submit"
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
           >
-            Find Schemes
+            {t.findSchemesBtn}
           </button>
 
         </form>
@@ -180,7 +180,7 @@ function SchemeRecommender() {
         <section className="max-w-6xl mx-auto py-12 px-6">
 
           <h3 className="text-2xl font-bold text-center mb-8 text-gray-700">
-            Recommended Schemes
+            {t.recommendedSchemes}
           </h3>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -200,7 +200,7 @@ function SchemeRecommender() {
                 </p>
 
                 <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-                  Learn More
+                  {t.learnMore}
                 </button>
 
               </div>
@@ -219,30 +219,30 @@ function SchemeRecommender() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
 
           <div>
-            <h4 className="font-semibold mb-2">About JanMitra</h4>
+            <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
             <p className="text-sm">
-              A digital platform helping rural citizens access government services easily.
+              {t.aboutDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Help & Support</h4>
+            <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
             <p className="text-sm">
-              User guides and citizen assistance.
+              {t.helpDesc}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-2">Panchayat Contact</h4>
+            <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
             <p className="text-sm">
-              Contact your local village office for support.
+              {t.panchayatDesc}
             </p>
           </div>
 
         </div>
 
         <div className="text-center pb-4 text-sm">
-          JanMitra – Bringing Digital Government Services to Every Village.
+          {t.footerTagline}
         </div>
 
       </footer>

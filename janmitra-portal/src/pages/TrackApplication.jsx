@@ -74,11 +74,11 @@ function TrackApplication() {
   <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
 
   <h2 className="text-3xl font-bold mb-2">
-  Track Your Applications
+  {t.trackAppTitle}
   </h2>
 
   <p className="text-lg">
-  Enter your Aadhaar number to check request status
+  {t.trackAppDesc}
   </p>
 
   </section>
@@ -92,12 +92,12 @@ function TrackApplication() {
   <div>
 
   <label className="block font-semibold mb-2">
-  Enter Aadhaar Number
+  {t.enterAadhaarLabel}
   </label>
 
   <input
   type="text"
-  placeholder="Enter Aadhaar Number"
+  placeholder={t.enterAadhaarPlaceholder}
   value={searchValue}
   onChange={(e)=>setSearchValue(e.target.value)}
   required
@@ -110,7 +110,7 @@ function TrackApplication() {
   type="submit"
   className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
   >
-  Check Status
+  {t.checkStatusBtn}
   </button>
 
   </form>
@@ -124,7 +124,7 @@ function TrackApplication() {
   <section className="max-w-6xl mx-auto py-12 px-6">
 
   <h3 className="text-2xl font-bold text-center mb-8 text-gray-700">
-  Application Status
+  {t.appStatusTitle}
   </h3>
 
   <div className="bg-white rounded-lg shadow overflow-hidden">
@@ -134,8 +134,8 @@ function TrackApplication() {
   <thead className="bg-gray-100">
 
   <tr>
-  <th className="p-4">Certificate</th>
-  <th className="p-4">Status</th>
+  <th className="p-4">{t.certificateColumn}</th>
+  <th className="p-4">{t.statusColumn}</th>
   </tr>
 
   </thead>
@@ -163,6 +163,41 @@ function TrackApplication() {
   </section>
 
   )}
+
+  {/* Footer */}
+
+  <footer className="bg-blue-700 text-white mt-12">
+
+    <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
+
+      <div>
+        <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
+        <p className="text-sm">
+          {t.aboutDesc}
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
+        <p className="text-sm">
+          {t.helpDesc}
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
+        <p className="text-sm">
+          {t.panchayatDesc}
+        </p>
+      </div>
+
+    </div>
+
+    <div className="text-center pb-4 text-sm">
+      {t.footerTagline}
+    </div>
+
+  </footer>
 
   </div>
   );

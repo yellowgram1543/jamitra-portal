@@ -49,7 +49,66 @@ const translations = {
     uploadDoc: "Upload Document",
     submitApp: "Submit Application",
     appSaved: "Application Saved",
-    appSavedDesc: "Your application has been submitted successfully."
+    appSavedDesc: "Your application has been submitted successfully.",
+
+    // Footer
+    aboutJanMitra: "About JanMitra",
+    aboutDesc: "A digital platform helping rural citizens access government services easily.",
+    helpSupport: "Help & Support",
+    helpDesc: "User guides and citizen assistance.",
+    panchayatContact: "Panchayat Contact",
+    panchayatDesc: "Contact your local village office for support.",
+    footerTagline: "JanMitra – Bringing Digital Government Services to Every Village.",
+
+    // Scheme Recommender
+    findSchemesTitle: "Find Government Schemes for You",
+    findSchemesDesc: "Enter your details to see eligible welfare schemes.",
+    occupation: "Occupation",
+    selectOccupation: "Select Occupation",
+    farmer: "Farmer",
+    student: "Student",
+    worker: "Worker",
+    smallBusiness: "Small Business Owner",
+    annualIncome: "Annual Income",
+    age: "Age",
+    state: "State",
+    district: "District",
+    findSchemesBtn: "Find Schemes",
+    recommendedSchemes: "Recommended Schemes",
+    learnMore: "Learn More",
+
+    // Track Application
+    trackAppTitle: "Track Your Applications",
+    trackAppDesc: "Enter your Aadhaar number to check request status",
+    enterAadhaarLabel: "Enter Aadhaar Number",
+    enterAadhaarPlaceholder: "Enter Aadhaar Number",
+    checkStatusBtn: "Check Status",
+    appStatusTitle: "Application Status",
+    certificateColumn: "Certificate",
+    statusColumn: "Status",
+
+    // Report Corruption
+    locationLabel: "Location (Village / District)",
+    descriptionLabel: "Description",
+    uploadPhotoOptional: "Upload Photo (optional)",
+    submitReportBtn: "Submit Report",
+    reportSubmittedTitle: "Report Submitted",
+    reportSubmittedDesc: "Your report has been recorded and will be forwarded to the district authority.",
+
+    // My Documents
+    myGovDocsTitle: "My Government Documents",
+    myGovDocsDesc: "Access personal IDs and store important records securely.",
+    personalIdAccess: "Personal ID Access",
+    openDigiLockerBtn: "Open DigiLocker",
+    accessVerifiedDocsTitle: "Access Verified Government Documents",
+    accessVerifiedDocsDesc: "View Aadhaar, PAN, Driving Licence, educational certificates and other official documents securely through DigiLocker.",
+    uploadAddDocsTitle: "Upload Additional Documents",
+    docNamePlaceholder: "Document Name (Land Record, Property Paper...)",
+    uploadDocBtn: "Upload Document",
+    uploadedDocsTitle: "Uploaded Documents",
+    noDocsYet: "No documents uploaded yet.",
+    fileLabel: "File: ",
+    uploadedLabel: "Uploaded: "
   },
 
   hi: {
@@ -101,7 +160,66 @@ const translations = {
     uploadDoc: "दस्तावेज़ अपलोड करें",
     submitApp: "आवेदन जमा करें",
     appSaved: "आवेदन सुरक्षित किया गया",
-    appSavedDesc: "आपका आवेदन सफलतापूर्वक जमा कर दिया गया है।"
+    appSavedDesc: "आपका आवेदन सफलतापूर्वक जमा कर दिया गया है।",
+
+    // Footer
+    aboutJanMitra: "जनमित्र के बारे में",
+    aboutDesc: "ग्रामीण नागरिकों को सरकारी सेवाओं तक आसानी से पहुंचने में मदद करने वाला एक डिजिटल प्लेटफॉर्म।",
+    helpSupport: "सहायता और समर्थन",
+    helpDesc: "उपयोगकर्ता गाइड और नागरिक सहायता।",
+    panchayatContact: "पंचायत संपर्क",
+    panchayatDesc: "सहायता के लिए अपने स्थानीय ग्राम कार्यालय से संपर्क करें।",
+    footerTagline: "जनमित्र - हर गांव तक डिजिटल सरकारी सेवाएं पहुंचाना।",
+
+    // Scheme Recommender
+    findSchemesTitle: "अपने लिए सरकारी योजनाएं खोजें",
+    findSchemesDesc: "पात्र कल्याणकारी योजनाओं को देखने के लिए अपना विवरण दर्ज करें।",
+    occupation: "पेशा",
+    selectOccupation: "पेशा चुनें",
+    farmer: "किसान",
+    student: "छात्र",
+    worker: "मजदूर",
+    smallBusiness: "छोटा व्यवसाय स्वामी",
+    annualIncome: "वार्षिक आय",
+    age: "आयु",
+    state: "राज्य",
+    district: "जिला",
+    findSchemesBtn: "योजनाएं खोजें",
+    recommendedSchemes: "अनुशंसित योजनाएं",
+    learnMore: "और जानें",
+
+    // Track Application
+    trackAppTitle: "अपने आवेदन ट्रैक करें",
+    trackAppDesc: "अनुरोध की स्थिति जांचने के लिए अपना आधार नंबर दर्ज करें",
+    enterAadhaarLabel: "आधार नंबर दर्ज करें",
+    enterAadhaarPlaceholder: "आधार नंबर दर्ज करें",
+    checkStatusBtn: "स्थिति जांचें",
+    appStatusTitle: "आवेदन की स्थिति",
+    certificateColumn: "प्रमाण पत्र",
+    statusColumn: "स्थिति",
+
+    // Report Corruption
+    locationLabel: "स्थान (गांव / जिला)",
+    descriptionLabel: "विवरण",
+    uploadPhotoOptional: "फोटो अपलोड करें (वैकल्पिक)",
+    submitReportBtn: "रिपोर्ट जमा करें",
+    reportSubmittedTitle: "रिपोर्ट जमा की गई",
+    reportSubmittedDesc: "आपकी रिपोर्ट दर्ज कर ली गई है और जिला प्राधिकरण को भेज दी जाएगी।",
+
+    // My Documents
+    myGovDocsTitle: "मेरे सरकारी दस्तावेज़",
+    myGovDocsDesc: "व्यक्तिगत आईडी तक पहुंचें और महत्वपूर्ण रिकॉर्ड सुरक्षित रूप से संग्रहीत करें।",
+    personalIdAccess: "व्यक्तिगत आईडी एक्सेस",
+    openDigiLockerBtn: "डिजिलॉकर खोलें",
+    accessVerifiedDocsTitle: "सत्यापित सरकारी दस्तावेजों तक पहुंचें",
+    accessVerifiedDocsDesc: "डिजिलॉकर के माध्यम से आधार, पैन, ड्राइविंग लाइसेंस, शैक्षिक प्रमाण पत्र और अन्य आधिकारिक दस्तावेज सुरक्षित रूप से देखें।",
+    uploadAddDocsTitle: "अतिरिक्त दस्तावेज़ अपलोड करें",
+    docNamePlaceholder: "दस्तावेज़ का नाम (भूमि रिकॉर्ड, संपत्ति का कागज...)",
+    uploadDocBtn: "दस्तावेज़ अपलोड करें",
+    uploadedDocsTitle: "अपलोड किए गए दस्तावेज़",
+    noDocsYet: "अभी तक कोई दस्तावेज़ अपलोड नहीं किया गया है।",
+    fileLabel: "फ़ाइल: ",
+    uploadedLabel: "अपलोड किया गया: "
   },
 
   kn: {
@@ -153,7 +271,66 @@ const translations = {
     uploadDoc: "ದಾಖಲೆಯನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
     submitApp: "ಅರ್ಜಿಯನ್ನು ಸಲ್ಲಿಸಿ",
     appSaved: "ಅರ್ಜಿಯನ್ನು ಉಳಿಸಲಾಗಿದೆ",
-    appSavedDesc: "ನಿಮ್ಮ ಅರ್ಜಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ."
+    appSavedDesc: "ನಿಮ್ಮ ಅರ್ಜಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ.",
+
+    // Footer
+    aboutJanMitra: "ಜನ್‌ಮಿತ್ರ ಬಗ್ಗೆ",
+    aboutDesc: "ಗ್ರಾಮೀಣ ನಾಗರಿಕರಿಗೆ ಸರ್ಕಾರಿ ಸೇವೆಗಳನ್ನು ಸುಲಭವಾಗಿ ಪ್ರವೇಶಿಸಲು ಸಹಾಯ ಮಾಡುವ ಡಿಜಿಟಲ್ ವೇದಿಕೆ.",
+    helpSupport: "ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ",
+    helpDesc: "ಬಳಕೆದಾರ ಮಾರ್ಗದರ್ಶಿಗಳು ಮತ್ತು ನಾಗರಿಕ ನೆರವು.",
+    panchayatContact: "ಪಂಚಾಯತ್ ಸಂಪರ್ಕ",
+    panchayatDesc: "ಬೆಂಬಲಕ್ಕಾಗಿ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಗ್ರಾಮ ಕಚೇರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+    footerTagline: "ಜನ್‌ಮಿತ್ರ - ಪ್ರತಿ ಗ್ರಾಮಕ್ಕೂ ಡಿಜಿಟಲ್ ಸರ್ಕಾರಿ ಸೇವೆಗಳನ್ನು ತರುವುದು.",
+
+    // Scheme Recommender
+    findSchemesTitle: "ನಿಮಗಾಗಿ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ",
+    findSchemesDesc: "ಅರ್ಹ ಕಲ್ಯಾಣ ಯೋಜನೆಗಳನ್ನು ನೋಡಲು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ.",
+    occupation: "ಉದ್ಯೋಗ",
+    selectOccupation: "ಉದ್ಯೋಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    farmer: "ರೈತ",
+    student: "ವಿದ್ಯಾರ್ಥಿ",
+    worker: "ಕೆಲಸಗಾರ",
+    smallBusiness: "ಸಣ್ಣ ವ್ಯಾಪಾರ ಮಾಲೀಕ",
+    annualIncome: "ವಾರ್ಷಿಕ ಆದಾಯ",
+    age: "ವಯಸ್ಸು",
+    state: "ರಾಜ್ಯ",
+    district: "ಜಿಲ್ಲೆ",
+    findSchemesBtn: "ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ",
+    recommendedSchemes: "ಶಿಫಾರಸು ಮಾಡಿದ ಯೋಜನೆಗಳು",
+    learnMore: "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
+
+    // Track Application
+    trackAppTitle: "ನಿಮ್ಮ ಅರ್ಜಿಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ",
+    trackAppDesc: "ವಿನಂತಿಯ ಸ್ಥಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಲು ನಿಮ್ಮ ಆಧಾರ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ",
+    enterAadhaarLabel: "ಆಧಾರ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ",
+    enterAadhaarPlaceholder: "ಆಧಾರ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ",
+    checkStatusBtn: "ಸ್ಥಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ",
+    appStatusTitle: "ಅರ್ಜಿಯ ಸ್ಥಿತಿ",
+    certificateColumn: "ಪ್ರಮಾಣಪತ್ರ",
+    statusColumn: "ಸ್ಥಿತಿ",
+
+    // Report Corruption
+    locationLabel: "ಸ್ಥಳ (ಗ್ರಾಮ / ಜಿಲ್ಲೆ)",
+    descriptionLabel: "ವಿವರಣೆ",
+    uploadPhotoOptional: "ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ (ಐಚ್ಛಿಕ)",
+    submitReportBtn: "ವರದಿಯನ್ನು ಸಲ್ಲಿಸಿ",
+    reportSubmittedTitle: "ವರದಿಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ",
+    reportSubmittedDesc: "ನಿಮ್ಮ ವರದಿಯನ್ನು ದಾಖಲಿಸಲಾಗಿದೆ ಮತ್ತು ಜಿಲ್ಲಾ ಪ್ರಾಧಿಕಾರಕ್ಕೆ ರವಾನಿಸಲಾಗುತ್ತದೆ.",
+
+    // My Documents
+    myGovDocsTitle: "ನನ್ನ ಸರ್ಕಾರಿ ದಾಖಲೆಗಳು",
+    myGovDocsDesc: "ವೈಯಕ್ತಿಕ ಐಡಿಗಳನ್ನು ಪ್ರವೇಶಿಸಿ ಮತ್ತು ಪ್ರಮುಖ ದಾಖಲೆಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ.",
+    personalIdAccess: "ವೈಯಕ್ತಿಕ ಐಡಿ ಪ್ರವೇಶ",
+    openDigiLockerBtn: "ಡಿಜಿಲಾಕರ್ ತೆರೆಯಿರಿ",
+    accessVerifiedDocsTitle: "ಪರಿಶೀಲಿಸಿದ ಸರ್ಕಾರಿ ದಾಖಲೆಗಳನ್ನು ಪ್ರವೇಶಿಸಿ",
+    accessVerifiedDocsDesc: "ಡಿಜಿಲಾಕರ್ ಮೂಲಕ ಆಧಾರ್, ಪ್ಯಾನ್, ಡ್ರೈವಿಂಗ್ ಲೈಸೆನ್ಸ್, ಶೈಕ್ಷಣಿಕ ಪ್ರಮಾಣಪತ್ರಗಳು ಮತ್ತು ಇತರ ಅಧಿಕೃತ ದಾಖಲೆಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ವೀಕ್ಷಿಸಿ.",
+    uploadAddDocsTitle: "ಹೆಚ್ಚುವರಿ ದಾಖಲೆಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+    docNamePlaceholder: "ದಾಖಲೆಯ ಹೆಸರು (ಭೂ ದಾಖಲೆ, ಆಸ್ತಿ ಪತ್ರ...)",
+    uploadDocBtn: "ದಾಖಲೆಯನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+    uploadedDocsTitle: "ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ದಾಖಲೆಗಳು",
+    noDocsYet: "ಇನ್ನೂ ಯಾವುದೇ ದಾಖಲೆಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿಲ್ಲ.",
+    fileLabel: "ಫೈಲ್: ",
+    uploadedLabel: "ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ: "
   }
 
 };
