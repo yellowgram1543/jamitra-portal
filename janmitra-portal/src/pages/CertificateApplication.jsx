@@ -63,7 +63,7 @@ function CertificateApplication() {
 
       {/* Page Title */}
 
-      <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
+      <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-12 px-6">
 
         <h2 className="text-3xl font-bold mb-2">
           {t.applyCertificates}
@@ -173,7 +173,7 @@ function CertificateApplication() {
 
             <button
               type="submit"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
+              className="bg-brand-orange hover:bg-brand-orange-dark text-white px-6 py-3 rounded font-semibold"
             >
               {t.submitApp}
             </button>
@@ -184,7 +184,7 @@ function CertificateApplication() {
 
           <div className="text-center p-6">
 
-            <h3 className="text-xl font-bold text-green-600 mb-4">
+            <h3 className="text-xl font-bold text-brand-green mb-4">
               {t.appSaved}
             </h3>
 

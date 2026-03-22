@@ -12,7 +12,7 @@ function TrackApplication() {
   const [showResults,setShowResults] = useState(false);
 
   const getStatusColor = (status) => {
-    if (status === "Approved") return "text-green-600 font-semibold";
+    if (status === "Approved") return "text-brand-green font-semibold";
     if (status === "Processing") return "text-yellow-600 font-semibold";
     if (status === "Pending") return "text-yellow-600 font-semibold";
     if (status === "Rejected") return "text-red-600 font-semibold";
@@ -52,7 +52,7 @@ function TrackApplication() {
 
   {/* TITLE */}
 
-  <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
+  <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-12 px-6">
 
   <h2 className="text-3xl font-bold mb-2">
   {t.trackAppTitle}
@@ -89,7 +89,7 @@ function TrackApplication() {
 
   <button
   type="submit"
-  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
+  className="bg-brand-orange hover:bg-brand-orange-dark text-white px-6 py-3 rounded font-semibold"
   >
   {t.checkStatusBtn}
   </button>

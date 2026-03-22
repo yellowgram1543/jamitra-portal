@@ -64,7 +64,7 @@ function MyDocuments() {
 
       {/* Hero Section */}
 
-      <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
+      <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-12 px-6">
 
         <h2 className="text-3xl font-bold mb-2">
           {t.myGovDocsTitle}
@@ -101,7 +101,7 @@ function MyDocuments() {
                 {id.desc}
               </p>
 
-              <p className="text-blue-600 font-semibold mb-4">
+              <p className="text-brand-blue font-semibold mb-4">
                 {id.status}
               </p>
 
@@ -109,7 +109,7 @@ function MyDocuments() {
                 href="https://www.digilocker.gov.in/"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                className="bg-brand-blue hover:bg-brand-blue-dark text-white px-4 py-2 rounded"
               >
                 {t.openDigiLockerBtn}
               </a>
@@ -138,7 +138,7 @@ function MyDocuments() {
           href="https://www.digilocker.gov.in/"
           target="_blank"
           rel="noreferrer"
-          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded font-semibold"
+          className="bg-brand-green hover:bg-brand-green-dark text-white px-6 py-3 rounded font-semibold"
         >
           🔒 {t.openDigiLockerBtn}
         </a>
@@ -173,7 +173,7 @@ function MyDocuments() {
 
           <button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded"
+            className="bg-brand-orange hover:bg-brand-orange-dark text-white px-6 py-2 rounded"
           >
             {t.uploadDocBtn}
           </button>

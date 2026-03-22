@@ -50,7 +50,7 @@ function SchemeRecommender() {
 
       {/* Page Title */}
 
-      <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-12 px-6">
+      <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-12 px-6">
 
         <h2 className="text-3xl font-bold mb-2">
           {t.findSchemesTitle}
@@ -145,9 +145,8 @@ function SchemeRecommender() {
 
           <button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
-          >
-            {t.findSchemesBtn}
+            className="bg-brand-orange hover:bg-brand-orange-dark text-white px-6 py-3 rounded font-semibold"
+          >            {t.findSchemesBtn}
           </button>
 
         </form>
@@ -180,7 +179,7 @@ function SchemeRecommender() {
                   {scheme.description}
                 </p>
 
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                <button className="bg-brand-blue hover:bg-brand-blue-dark text-white px-4 py-2 rounded">
                   {t.learnMore}
                 </button>
 

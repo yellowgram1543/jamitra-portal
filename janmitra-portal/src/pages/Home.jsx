@@ -48,7 +48,7 @@ function Home() {
 
       {/* Hero Section */}
 
-      <section className="bg-gradient-to-r from-blue-600 to-green-500 text-white text-center py-16 px-6">
+      <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-16 px-6">
 
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           {t.accessServices}
@@ -58,7 +58,7 @@ function Home() {
           {t.heroDesc}
         </p>
 
-        <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded text-white font-semibold">
+        <button className="bg-brand-orange hover:bg-brand-orange-dark px-6 py-3 rounded text-white font-semibold">
           {t.getStarted}
         </button>
 
