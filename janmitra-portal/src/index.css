@@ -16,12 +16,12 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-brand-blue to-brand-blue-dark text-white font-semibold py-3 px-6 rounded-xl 
+    @apply bg-gradient-to-r from-brand-saffron to-brand-saffron-dark text-white font-semibold py-3 px-6 rounded-xl 
            shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200;
   }
 
   .btn-secondary {
-    @apply bg-white text-brand-blue-dark border border-gray-200 font-semibold py-3 px-6 rounded-xl 
+    @apply bg-white text-brand-navy border border-gray-200 font-semibold py-3 px-6 rounded-xl 
            shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200;
   }
 
@@ -30,10 +30,18 @@
   }
 
   .input-field {
-    @apply w-full bg-white border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue outline-none transition-all duration-200;
+    @apply w-full bg-white border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-brand-saffron/20 focus:border-brand-saffron outline-none transition-all duration-200;
   }
 
-  .badge {
-    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+  .badge-navy {
+    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-navy/10 text-brand-navy;
+  }
+
+  .badge-green {
+    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-green/10 text-brand-green;
+  }
+
+  .badge-saffron {
+    @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-saffron/10 text-brand-saffron;
   }
 }

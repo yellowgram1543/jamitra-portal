@@ -8,20 +8,20 @@ export default {
     extend: {
       colors: {
         brand: {
-          blue: {
-            light: "#3b82f6",
-            DEFAULT: "#2563EB",
-            dark: "#1E40AF",
+          saffron: {
+            light: "#FFB366",
+            DEFAULT: "#FF9933",
+            dark: "#CC7A29",
           },
           green: {
-            light: "#34d399",
-            DEFAULT: "#10b981",
-            dark: "#059669",
+            light: "#2EAB27",
+            DEFAULT: "#128807",
+            dark: "#0D6105",
           },
-          orange: {
-            light: "#fb923c",
-            DEFAULT: "#f97316",
-            dark: "#ea580c",
+          navy: {
+            light: "#1A1A99",
+            DEFAULT: "#000080",
+            dark: "#000066",
           },
           surface: "#F9FAFB",
         }

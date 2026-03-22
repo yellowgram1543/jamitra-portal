@@ -22,21 +22,21 @@ function MyDocuments() {
       desc: t.aadhaarDesc,
       status: t.digiLockerStatus,
       icon: <Fingerprint size={32} />,
-      color: "bg-blue-50 text-brand-blue"
+      color: "bg-brand-navy/10 text-brand-navy"
     },
     {
       name: t.panCard,
       desc: t.panDesc,
       status: t.digiLockerStatus,
       icon: <CreditCard size={32} />,
-      color: "bg-orange-50 text-brand-orange"
+      color: "bg-brand-saffron/10 text-brand-saffron"
     },
     {
       name: t.drivingLicence,
       desc: t.drivingLicenceDesc,
       status: t.digiLockerStatus,
       icon: <Car size={32} />,
-      color: "bg-green-50 text-brand-green"
+      color: "bg-brand-green/10 text-brand-green"
     }
   ];
 
@@ -71,7 +71,7 @@ function MyDocuments() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+      <section className="bg-gradient-to-br from-brand-navy via-brand-navy/90 to-brand-green-dark text-white py-16 px-6 text-center shadow-lg">
         <h2 className="text-4xl font-display font-bold mb-4">{t.myGovDocsTitle}</h2>
         <p className="text-xl opacity-90 max-w-2xl mx-auto">{t.myGovDocsDesc}</p>
       </section>
@@ -92,7 +92,7 @@ function MyDocuments() {
               <h4 className="text-xl font-display font-bold mb-2 text-gray-900">{id.name}</h4>
               <p className="text-gray-500 text-sm mb-4 leading-relaxed">{id.desc}</p>
               
-              <div className="flex items-center gap-1 text-brand-blue font-bold text-sm mb-6">
+              <div className="flex items-center gap-1 text-brand-navy font-bold text-sm mb-6">
                 <ShieldCheck size={16} /> {id.status}
               </div>
 
@@ -112,7 +112,7 @@ function MyDocuments() {
       {/* DigiLocker Callout */}
       <section className="max-w-3xl mx-auto px-6 mb-16">
         <div className="bg-white p-10 rounded-2xl shadow-soft text-center border-t-4 border-brand-green">
-          <div className="w-16 h-16 bg-green-50 text-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
              <ShieldCheck size={32} />
           </div>
           <h3 className="text-2xl font-display font-bold text-gray-800 mb-4">{t.accessVerifiedDocsTitle}</h3>
@@ -133,7 +133,7 @@ function MyDocuments() {
         {/* Upload Form */}
         <div className="card-elevated">
           <h3 className="text-2xl font-display font-bold mb-6 text-gray-800 flex items-center gap-2">
-            <Upload size={24} className="text-brand-orange" /> {t.uploadAddDocsTitle}
+            <Upload size={24} className="text-brand-saffron" /> {t.uploadAddDocsTitle}
           </h3>
 
           <form onSubmit={handleUpload} className="space-y-4">
@@ -152,7 +152,7 @@ function MyDocuments() {
               <input
                 type="file"
                 onChange={(e) => setFile(e.target.files[0])}
-                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
+                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-navy/10 file:text-brand-navy hover:file:bg-brand-navy/20 transition-all duration-200"
                 required
               />
             </div>
@@ -175,7 +175,7 @@ function MyDocuments() {
             <div className="space-y-4">
               {documents.map((doc, index) => (
                 <div key={index} className="bg-white p-5 rounded-xl shadow-soft flex items-center gap-4 hover:shadow-md transition-shadow">
-                  <div className="w-12 h-12 bg-blue-50 text-brand-blue rounded-lg flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 bg-brand-navy/10 text-brand-navy rounded-lg flex items-center justify-center shrink-0">
                     <File size={24} />
                   </div>
                   <div className="flex-grow">

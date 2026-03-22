@@ -69,9 +69,9 @@ function SchemeRecommender() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
-        <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
-          <Search size={40} className="text-white" />
+      <section className="bg-gradient-to-br from-brand-navy via-brand-navy/90 to-brand-green-dark text-white py-16 px-6 text-center">
+        <div className="w-24 h-24 bg-brand-saffron/20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm border border-brand-saffron/30">
+          <Search size={48} className="text-brand-saffron" />
         </div>
         <h2 className="text-4xl font-display font-bold mb-4">
           {t.findSchemesTitle}
@@ -88,7 +88,7 @@ function SchemeRecommender() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="md:col-span-2">
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <Briefcase size={16} className="text-brand-blue" />
+                  <Briefcase size={16} className="text-brand-navy" />
                   {t.occupation}
                 </label>
                 <select
@@ -108,7 +108,7 @@ function SchemeRecommender() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <IndianRupee size={16} className="text-brand-blue" />
+                  <IndianRupee size={16} className="text-brand-navy" />
                   {t.annualIncome}
                 </label>
                 <input
@@ -124,7 +124,7 @@ function SchemeRecommender() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <Calendar size={16} className="text-brand-blue" />
+                  <Calendar size={16} className="text-brand-navy" />
                   {t.age}
                 </label>
                 <input
@@ -140,7 +140,7 @@ function SchemeRecommender() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <MapPin size={16} className="text-brand-blue" />
+                  <MapPin size={16} className="text-brand-navy" />
                   {t.state}
                 </label>
                 <input
@@ -156,7 +156,7 @@ function SchemeRecommender() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <MapPin size={16} className="text-brand-blue" />
+                  <MapPin size={16} className="text-brand-navy" />
                   {t.district}
                 </label>
                 <input
@@ -206,10 +206,10 @@ function SchemeRecommender() {
                   key={index}
                   className="card-elevated flex flex-col group hover:-translate-y-2"
                 >
-                  <div className="mb-6 w-14 h-14 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                  <div className="mb-6 w-14 h-14 bg-brand-green/10 text-brand-green rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                      <Award size={28} />
                   </div>
-                  <h4 className="text-xl font-display font-bold mb-3 text-gray-900 group-hover:text-brand-blue transition-colors">
+                  <h4 className="text-xl font-display font-bold mb-3 text-gray-900 group-hover:text-brand-navy transition-colors">
                     {scheme.title}
                   </h4>
                   <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm">

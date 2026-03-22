@@ -10,7 +10,7 @@ function Header() {
       <div className="max-w-6xl mx-auto flex justify-between items-center p-4 md:p-6">
         <div>
           <Link to="/" className="hover:opacity-90 transition-opacity">
-            <h1 className="text-2xl md:text-3xl font-bold text-brand-blue tracking-tight font-display">
+            <h1 className="text-2xl md:text-3xl font-bold text-brand-navy tracking-tight font-display">
               JanMitra
             </h1>
           </Link>

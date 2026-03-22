@@ -81,9 +81,9 @@ function ReportCorruption() {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
-        <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
-          <ShieldAlert size={40} className="text-white" />
+      <section className="bg-gradient-to-br from-brand-navy via-brand-navy/90 to-brand-green-dark text-white py-16 px-6 text-center">
+        <div className="w-24 h-24 bg-brand-saffron/20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm border border-brand-saffron/30">
+          <ShieldAlert size={48} className="text-brand-saffron" />
         </div>
         <h2 className="text-4xl font-display font-bold mb-4">
           {t.reportCorruption}
@@ -100,7 +100,7 @@ function ReportCorruption() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <AlertTriangle size={16} className="text-red-500" />
+                  <AlertTriangle size={16} className="text-brand-saffron" />
                   {t.issueType}
                 </label>
                 <select
@@ -119,7 +119,7 @@ function ReportCorruption() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <MapPin size={16} className="text-brand-blue" />
+                  <MapPin size={16} className="text-brand-navy" />
                   {t.locationLabel}
                 </label>
                 <input
@@ -134,7 +134,7 @@ function ReportCorruption() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <FileText size={16} className="text-brand-blue" />
+                  <FileText size={16} className="text-brand-navy" />
                   {t.descriptionLabel}
                 </label>
                 <textarea
@@ -149,14 +149,14 @@ function ReportCorruption() {
 
               <div>
                 <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <Camera size={16} className="text-brand-blue" />
+                  <Camera size={16} className="text-brand-navy" />
                   {t.uploadPhotoOptional}
                 </label>
                 <input
                   type="file"
                   name="photo"
                   onChange={handleChange}
-                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-navy/10 file:text-brand-navy hover:file:bg-brand-navy/20 transition-all duration-200"
                 />
               </div>
 

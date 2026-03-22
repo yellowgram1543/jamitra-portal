@@ -5,7 +5,7 @@ function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white mt-16 shadow-inner">
+    <footer className="bg-gradient-to-br from-brand-navy to-brand-green-dark text-white mt-16 shadow-inner">
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 p-10 md:p-16">
         <div>
           <h4 className="font-display font-bold text-xl mb-4 border-b border-white/20 pb-2">{t.aboutJanMitra}</h4>
