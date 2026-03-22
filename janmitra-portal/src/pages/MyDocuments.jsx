@@ -12,9 +12,11 @@ import {
 import { useLanguage } from "../context/LanguageContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { DocumentSkeleton } from "../components/Skeletons";
 
 function MyDocuments() {
   const { t } = useLanguage();
+  const [loading, setLoading] = useState(true);
 
   const linkedIDs = [
     {
@@ -45,8 +47,14 @@ function MyDocuments() {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    const storedDocs = JSON.parse(localStorage.getItem("janmitra_docs")) || [];
-    setDocuments(storedDocs);
+    // Simulate a brief loading state for smooth transition
+    setLoading(true);
+    const timer = setTimeout(() => {
+      const storedDocs = JSON.parse(localStorage.getItem("janmitra_docs")) || [];
+      setDocuments(storedDocs);
+      setLoading(false);
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleUpload = (e) => {
@@ -167,12 +175,16 @@ function MyDocuments() {
         <div>
           <h3 className="text-2xl font-display font-bold mb-6 text-gray-800">{t.uploadedDocsTitle}</h3>
           
-          {documents.length === 0 ? (
-            <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-12 text-center">
+          {loading ? (
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => <DocumentSkeleton key={i} />)}
+            </div>
+          ) : documents.length === 0 ? (
+            <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-12 text-center fade-in">
               <p className="text-gray-500 italic">{t.noDocsYet}</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 fade-in">
               {documents.map((doc, index) => (
                 <div key={index} className="bg-white p-5 rounded-xl shadow-soft flex items-center gap-4 hover:shadow-md transition-shadow">
                   <div className="w-12 h-12 bg-brand-navy/10 text-brand-navy rounded-lg flex items-center justify-center shrink-0">

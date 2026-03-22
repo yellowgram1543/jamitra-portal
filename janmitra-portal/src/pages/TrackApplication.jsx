@@ -7,12 +7,14 @@ import {
   CheckCircle, 
   XCircle, 
   Hash,
-  AlertCircle
+  AlertCircle,
+  Loader2
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { TableRowSkeleton } from "../components/Skeletons";
 
 function TrackApplication() {
 
@@ -21,6 +23,7 @@ function TrackApplication() {
   const [searchValue, setSearchValue] = useState("");
   const [applications, setApplications] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getStatusBadge = (status) => {
     if (status === "Approved") {
@@ -54,6 +57,8 @@ function TrackApplication() {
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+    setLoading(true);
+    setShowResults(false);
 
     try {
 
@@ -79,6 +84,8 @@ function TrackApplication() {
       console.error("Error fetching applications:", error);
       toast.error("Error fetching applications. Please try again.");
 
+    } finally {
+      setLoading(false);
     }
 
   };
@@ -121,10 +128,11 @@ function TrackApplication() {
                 />
                 <button
                   type="submit"
-                  className="btn-primary whitespace-nowrap flex items-center justify-center gap-2 px-8"
+                  disabled={loading}
+                  className={`btn-primary whitespace-nowrap flex items-center justify-center gap-2 px-8 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <Search size={18} />
-                  {t.checkStatusBtn}
+                  {loading ? <Loader2 size={18} className="animate-spin" /> : <Search size={18} />}
+                  {loading ? "Checking..." : t.checkStatusBtn}
                 </button>
               </div>
             </div>
@@ -133,14 +141,14 @@ function TrackApplication() {
       </main>
 
       {/* Results Section */}
-      {showResults && (
+      {(showResults || loading) && (
         <section className="max-w-6xl mx-auto py-12 px-6">
           <h3 className="text-3xl font-display font-bold text-center mb-8 text-gray-800 flex items-center justify-center gap-3">
             <ClipboardList size={32} className="text-brand-navy" />
             {t.appStatusTitle}
           </h3>
 
-          <div className="rounded-2xl overflow-hidden shadow-soft bg-white border border-gray-100">
+          <div className="rounded-2xl overflow-hidden shadow-soft bg-white border border-gray-100 fade-in">
             <table className="w-full text-left border-collapse">
               <thead className="bg-brand-navy text-white">
                 <tr>
@@ -150,7 +158,9 @@ function TrackApplication() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {applications.length > 0 ? (
+                {loading ? (
+                  [1, 2, 3, 4, 5].map((i) => <TableRowSkeleton key={i} />)
+                ) : applications.length > 0 ? (
                   applications.map((app, index) => (
                     <tr key={index} className="hover:bg-gray-50/50 transition-colors group">
                       <td className="p-5">

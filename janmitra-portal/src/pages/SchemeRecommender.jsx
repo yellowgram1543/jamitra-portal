@@ -14,6 +14,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { SchemeCardSkeleton } from "../components/Skeletons";
 
 function SchemeRecommender() {
 
@@ -182,10 +183,10 @@ function SchemeRecommender() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`btn-primary w-full md:w-auto px-12 flex items-center justify-center gap-2 mx-auto ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`btn-primary w-full md:w-auto px-12 flex items-center justify-center gap-2 mx-auto ${loading ? 'opacity-70 cursor-not-allowed shadow-none' : ''}`}
               >
                 {loading ? <Loader2 size={20} className="animate-spin" /> : <Search size={20} />}
-                {loading ? t.loading : t.findSchemesBtn}
+                {loading ? "Fetching Schemes..." : t.findSchemesBtn}
               </button>
             </div>
 
@@ -200,18 +201,24 @@ function SchemeRecommender() {
       </main>
 
       {/* Results */}
-      {showResults && (
+      {(showResults || loading) && (
         <section className="max-w-6xl mx-auto py-12 px-6 border-t border-gray-100">
           <h3 className="text-3xl font-display font-bold text-center mb-12 text-gray-800">
             {t.recommendedSchemes}
           </h3>
 
-          {schemes.length > 0 ? (
+          {loading ? (
             <div className="grid md:grid-cols-3 gap-8">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <SchemeCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : schemes.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-8 fade-in">
               {schemes.map((scheme, index) => (
                 <div
                   key={index}
-                  className="card-elevated flex flex-col group hover:-translate-y-2"
+                  className="card-elevated flex flex-col group hover:-translate-y-2 transition-all"
                 >
                   <div className="mb-6 w-14 h-14 bg-brand-green/10 text-brand-green rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                      <Award size={28} />
