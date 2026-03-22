@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { API_BASE_URL } from "../config";
 
 function ReportCorruption() {
 
@@ -15,9 +16,10 @@ function ReportCorruption() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-
     const { name, value, files } = e.target;
 
     if (name === "photo") {
@@ -25,39 +27,42 @@ function ReportCorruption() {
     } else {
       setFormData({ ...formData, [name]: value });
     }
-
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
+    setLoading(true);
+    setError(null);
 
     try {
+      // NOTE: Current backend expects JSON. JSON.stringify cannot handle File objects.
+      // We will send the text data, and for a real app, we'd use FormData + Multer on backend.
+      const dataToSubmit = {
+        issueType: formData.issueType,
+        location: formData.location,
+        description: formData.description,
+        // photo is skipped for now as JSON can't carry File objects
+      };
 
-      const response = await fetch("https://jamitra-portal.onrender.com/api/reports", {
-
+      const response = await fetch(`${API_BASE_URL}/reports`, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json"
         },
-
-        body: JSON.stringify(formData)
-
+        body: JSON.stringify(dataToSubmit)
       });
 
-      const data = await response.json();
-
-      console.log(data);
+      if (!response.ok) {
+        throw new Error("Failed to submit report");
+      }
 
       setSubmitted(true);
-
     } catch (error) {
-
       console.error("Error submitting report:", error);
-
+      setError(t.errorFetching || "An error occurred while submitting. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
   };
 
   return (

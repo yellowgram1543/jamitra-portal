@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -24,7 +25,7 @@ function TrackApplication() {
 
     try {
 
-      const response = await fetch("https://jamitra-portal.onrender.com/api/applications");
+      const response = await fetch(`${API_BASE_URL}/applications`);
 
       const data = await response.json();
 

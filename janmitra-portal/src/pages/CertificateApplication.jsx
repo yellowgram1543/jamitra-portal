@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -34,12 +35,15 @@ function CertificateApplication() {
 
     try {
 
-      const response = await fetch("https://jamitra-portal.onrender.com/api/applications", {
+      // Only stringify text fields, excluding the File object
+      const { document, ...textData } = formData;
+
+      const response = await fetch(`${API_BASE_URL}/applications`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(textData)
       });
 
       const data = await response.json();

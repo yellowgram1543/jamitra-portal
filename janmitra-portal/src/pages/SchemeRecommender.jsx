@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -35,7 +36,7 @@ function SchemeRecommender() {
 
     try {
       const response = await fetch(
-        `https://jamitra-portal.onrender.com/api/schemes?occupation=${formData.occupation}`
+        `${API_BASE_URL}/schemes?occupation=${formData.occupation}`
       );
 
       if (!response.ok) {
