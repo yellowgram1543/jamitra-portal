@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import { 
+  ClipboardSignature, 
+  User, 
+  Hash, 
+  Phone, 
+  MapPin, 
+  FileText, 
+  Upload, 
+  CheckCircle 
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
@@ -67,6 +77,9 @@ function CertificateApplication() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+        <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
+          <ClipboardSignature size={40} className="text-white" />
+        </div>
         <h2 className="text-4xl font-display font-bold mb-4">
           {t.applyCertificates}
         </h2>
@@ -81,7 +94,8 @@ function CertificateApplication() {
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <User size={16} className="text-brand-blue" />
                   {t.fullName}
                 </label>
                 <input
@@ -95,7 +109,8 @@ function CertificateApplication() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <Hash size={16} className="text-brand-blue" />
                   {t.aadhaarNumber}
                 </label>
                 <input
@@ -109,7 +124,8 @@ function CertificateApplication() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <Phone size={16} className="text-brand-blue" />
                   {t.mobileNumber}
                 </label>
                 <input
@@ -123,7 +139,8 @@ function CertificateApplication() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <MapPin size={16} className="text-brand-blue" />
                   {t.address}
                 </label>
                 <textarea
@@ -137,7 +154,8 @@ function CertificateApplication() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <FileText size={16} className="text-brand-blue" />
                   {t.certificateType}
                 </label>
                 <select
@@ -156,32 +174,32 @@ function CertificateApplication() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <Upload size={16} className="text-brand-blue" />
                   {t.uploadDoc}
                 </label>
                 <input
                   type="file"
                   name="document"
                   onChange={handleChange}
-                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
                 />
               </div>
 
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="btn-primary w-full md:w-auto"
+                  className="btn-primary w-full md:w-auto flex items-center justify-center gap-2"
                 >
+                  <CheckCircle size={18} />
                   {t.submitApp}
                 </button>
               </div>
             </form>
           ) : (
-            <div className="text-center p-8 bg-green-50 rounded-2xl border border-green-100">
+            <div className="text-center p-8 bg-green-50 rounded-2xl border border-green-100 shadow-sm">
               <div className="w-16 h-16 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
+                <CheckCircle className="w-8 h-8 text-brand-green" />
               </div>
               <h3 className="text-2xl font-display font-bold text-brand-green mb-2">
                 {t.appSaved}

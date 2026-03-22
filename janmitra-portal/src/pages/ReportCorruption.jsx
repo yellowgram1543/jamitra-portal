@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import { 
+  ShieldAlert, 
+  AlertTriangle, 
+  MapPin, 
+  FileText, 
+  Camera, 
+  CheckCircle,
+  Loader2,
+  AlertCircle
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -72,6 +82,9 @@ function ReportCorruption() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+        <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
+          <ShieldAlert size={40} className="text-white" />
+        </div>
         <h2 className="text-4xl font-display font-bold mb-4">
           {t.reportCorruption}
         </h2>
@@ -86,7 +99,8 @@ function ReportCorruption() {
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <AlertTriangle size={16} className="text-red-500" />
                   {t.issueType}
                 </label>
                 <select
@@ -104,7 +118,8 @@ function ReportCorruption() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <MapPin size={16} className="text-brand-blue" />
                   {t.locationLabel}
                 </label>
                 <input
@@ -118,7 +133,8 @@ function ReportCorruption() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <FileText size={16} className="text-brand-blue" />
                   {t.descriptionLabel}
                 </label>
                 <textarea
@@ -132,37 +148,45 @@ function ReportCorruption() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <Camera size={16} className="text-brand-blue" />
                   {t.uploadPhotoOptional}
                 </label>
                 <input
                   type="file"
                   name="photo"
                   onChange={handleChange}
-                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
                 />
               </div>
+
+              {error && (
+                <div className="flex items-center gap-2 text-red-600 font-medium text-sm">
+                  <AlertCircle size={16} />
+                  <p>{error}</p>
+                </div>
+              )}
 
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="btn-primary w-full md:w-auto px-8"
+                  disabled={loading}
+                  className={`btn-primary w-full md:w-auto px-12 flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
+                  {loading ? <Loader2 size={20} className="animate-spin" /> : <ShieldAlert size={20} />}
                   {t.submitReportBtn}
                 </button>
               </div>
             </form>
           ) : (
-            <div className="text-center p-8 bg-green-50 rounded-2xl border border-green-100">
-              <div className="w-16 h-16 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <div className="text-center p-12 bg-green-50 rounded-2xl border border-green-100 shadow-sm">
+              <div className="w-20 h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-10 h-10 text-brand-green" />
               </div>
-              <h3 className="text-2xl font-display font-bold text-brand-green mb-2">
+              <h3 className="text-3xl font-display font-bold text-brand-green mb-4">
                 {t.reportSubmittedTitle}
               </h3>
-              <p className="text-gray-700">
+              <p className="text-gray-700 text-lg">
                 {t.reportSubmittedDesc}
               </p>
             </div>

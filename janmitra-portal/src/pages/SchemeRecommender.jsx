@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import { 
+  Search, 
+  Briefcase, 
+  IndianRupee, 
+  Calendar, 
+  MapPin, 
+  Award, 
+  Loader2,
+  AlertCircle
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
@@ -60,6 +70,9 @@ function SchemeRecommender() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+        <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
+          <Search size={40} className="text-white" />
+        </div>
         <h2 className="text-4xl font-display font-bold mb-4">
           {t.findSchemesTitle}
         </h2>
@@ -74,7 +87,8 @@ function SchemeRecommender() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="md:col-span-2">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <Briefcase size={16} className="text-brand-blue" />
                   {t.occupation}
                 </label>
                 <select
@@ -93,7 +107,8 @@ function SchemeRecommender() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <IndianRupee size={16} className="text-brand-blue" />
                   {t.annualIncome}
                 </label>
                 <input
@@ -108,7 +123,8 @@ function SchemeRecommender() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <Calendar size={16} className="text-brand-blue" />
                   {t.age}
                 </label>
                 <input
@@ -123,7 +139,8 @@ function SchemeRecommender() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <MapPin size={16} className="text-brand-blue" />
                   {t.state}
                 </label>
                 <input
@@ -138,7 +155,8 @@ function SchemeRecommender() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                  <MapPin size={16} className="text-brand-blue" />
                   {t.district}
                 </label>
                 <input
@@ -157,14 +175,18 @@ function SchemeRecommender() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`btn-primary w-full md:w-auto px-12 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`btn-primary w-full md:w-auto px-12 flex items-center justify-center gap-2 mx-auto ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
+                {loading ? <Loader2 size={20} className="animate-spin" /> : <Search size={20} />}
                 {loading ? t.loading : t.findSchemesBtn}
               </button>
             </div>
 
             {error && (
-              <p className="text-red-600 text-center font-medium mt-4">{error}</p>
+              <div className="flex items-center justify-center gap-2 text-red-600 font-medium mt-4">
+                <AlertCircle size={18} />
+                <p>{error}</p>
+              </div>
             )}
           </form>
         </div>
@@ -182,26 +204,27 @@ function SchemeRecommender() {
               {schemes.map((scheme, index) => (
                 <div
                   key={index}
-                  className="card-elevated flex flex-col"
+                  className="card-elevated flex flex-col group hover:-translate-y-2"
                 >
-                  <div className="mb-4">
-                     <span className="badge bg-brand-blue/10 text-brand-blue">Scheme</span>
+                  <div className="mb-6 w-14 h-14 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                     <Award size={28} />
                   </div>
-                  <h4 className="text-xl font-display font-bold mb-3 text-gray-900">
+                  <h4 className="text-xl font-display font-bold mb-3 text-gray-900 group-hover:text-brand-blue transition-colors">
                     {scheme.title}
                   </h4>
-                  <p className="text-gray-600 mb-6 flex-grow leading-relaxed">
+                  <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-sm">
                     {scheme.description}
                   </p>
-                  <button className="btn-primary py-2 text-sm w-full">
+                  <button className="btn-secondary py-2.5 text-sm w-full font-bold">
                     {t.learnMore}
                   </button>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 card-elevated bg-gray-50 border-none">
-              <p className="text-xl text-gray-600 font-medium">
+            <div className="text-center py-16 card-elevated bg-gray-50 border-none shadow-none">
+              <AlertCircle size={48} className="mx-auto text-gray-300 mb-4" />
+              <p className="text-xl text-gray-500 font-medium">
                 {t.noSchemesFound}
               </p>
             </div>

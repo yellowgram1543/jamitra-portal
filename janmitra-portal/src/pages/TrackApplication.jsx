@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import { 
+  Search, 
+  ClipboardList, 
+  Clock, 
+  CheckCircle, 
+  XCircle, 
+  Hash,
+  AlertCircle
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
@@ -12,11 +21,33 @@ function TrackApplication() {
   const [applications, setApplications] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
-  const getStatusColor = (status) => {
-    if (status === "Approved") return "text-brand-green bg-green-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
-    if (status === "Processing" || status === "Pending") return "text-brand-orange bg-orange-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
-    if (status === "Rejected") return "text-red-600 bg-red-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
-    return "text-gray-600 bg-gray-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
+  const getStatusBadge = (status) => {
+    if (status === "Approved") {
+      return (
+        <span className="flex items-center gap-1.5 text-brand-green bg-green-50 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-green-100">
+          <CheckCircle size={14} /> {status}
+        </span>
+      );
+    }
+    if (status === "Processing" || status === "Pending") {
+      return (
+        <span className="flex items-center gap-1.5 text-brand-orange bg-orange-50 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-orange-100">
+          <Clock size={14} /> {status}
+        </span>
+      );
+    }
+    if (status === "Rejected") {
+      return (
+        <span className="flex items-center gap-1.5 text-red-600 bg-red-50 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-red-100">
+          <XCircle size={14} /> {status}
+        </span>
+      );
+    }
+    return (
+      <span className="flex items-center gap-1.5 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-gray-100">
+        <Clock size={14} /> {status || "Pending"}
+      </span>
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -52,6 +83,9 @@ function TrackApplication() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+        <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm">
+          <Search size={40} className="text-white" />
+        </div>
         <h2 className="text-4xl font-display font-bold mb-4">
           {t.trackAppTitle}
         </h2>
@@ -65,7 +99,8 @@ function TrackApplication() {
         <div className="card-elevated">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                <Hash size={16} className="text-brand-blue" />
                 {t.enterAadhaarLabel}
               </label>
               <div className="flex flex-col md:flex-row gap-4">
@@ -79,8 +114,9 @@ function TrackApplication() {
                 />
                 <button
                   type="submit"
-                  className="btn-primary whitespace-nowrap"
+                  className="btn-primary whitespace-nowrap flex items-center justify-center gap-2 px-8"
                 >
+                  <Search size={18} />
                   {t.checkStatusBtn}
                 </button>
               </div>
@@ -92,34 +128,33 @@ function TrackApplication() {
       {/* Results Section */}
       {showResults && (
         <section className="max-w-6xl mx-auto py-12 px-6">
-          <h3 className="text-3xl font-display font-bold text-center mb-8 text-gray-800">
+          <h3 className="text-3xl font-display font-bold text-center mb-8 text-gray-800 flex items-center justify-center gap-3">
+            <ClipboardList size={32} className="text-brand-blue" />
             {t.appStatusTitle}
           </h3>
 
-          <div className="rounded-2xl overflow-hidden shadow-soft bg-white">
+          <div className="rounded-2xl overflow-hidden shadow-soft bg-white border border-gray-100">
             <table className="w-full text-left border-collapse">
-              <thead className="bg-gray-50 border-b border-gray-100">
+              <thead className="bg-gray-50/80 border-b border-gray-100">
                 <tr>
-                  <th className="p-5 font-semibold text-gray-700">{t.certificateColumn}</th>
-                  <th className="p-5 font-semibold text-gray-700">{t.statusColumn}</th>
-                  <th className="p-5 font-semibold text-gray-700 text-right">Action</th>
+                  <th className="p-5 font-bold text-gray-700 text-sm uppercase tracking-wider">{t.certificateColumn}</th>
+                  <th className="p-5 font-bold text-gray-700 text-sm uppercase tracking-wider">{t.statusColumn}</th>
+                  <th className="p-5 font-bold text-gray-700 text-sm uppercase tracking-wider text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {applications.length > 0 ? (
                   applications.map((app, index) => (
-                    <tr key={index} className="hover:bg-gray-50/50 transition-colors">
+                    <tr key={index} className="hover:bg-gray-50/50 transition-colors group">
                       <td className="p-5">
-                        <div className="font-medium text-gray-900">{app.certificateType}</div>
-                        <div className="text-xs text-gray-500 mt-1">Ref: #JM-{Math.random().toString(36).substr(2, 9).toUpperCase()}</div>
+                        <div className="font-bold text-gray-900 group-hover:text-brand-blue transition-colors">{app.certificateType}</div>
+                        <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-tight">Ref: #JM-{Math.random().toString(36).substr(2, 9).toUpperCase()}</div>
                       </td>
                       <td className="p-5">
-                        <span className={getStatusColor(app.status)}>
-                          {app.status || "Pending"}
-                        </span>
+                        {getStatusBadge(app.status)}
                       </td>
                       <td className="p-5 text-right">
-                        <button className="text-brand-blue hover:text-brand-blue-dark font-semibold text-sm">
+                        <button className="text-brand-blue hover:text-brand-blue-dark font-bold text-sm underline-offset-4 hover:underline">
                           View Details
                         </button>
                       </td>
@@ -127,8 +162,11 @@ function TrackApplication() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="3" className="p-12 text-center text-gray-500">
-                      No applications found for this Aadhaar number.
+                    <td colSpan="3" className="p-20 text-center">
+                      <AlertCircle size={48} className="mx-auto text-gray-200 mb-4" />
+                      <p className="text-gray-500 font-medium italic">
+                        No applications found for this Aadhaar number.
+                      </p>
                     </td>
                   </tr>
                 )}
