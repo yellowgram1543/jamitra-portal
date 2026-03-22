@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
 function MyDocuments() {
@@ -64,7 +65,9 @@ function MyDocuments() {
         <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
 
           <div>
-            <h1 className="text-2xl font-bold text-blue-700">JanMitra</h1>
+            <Link to="/">
+              <h1 className="text-2xl font-bold text-blue-700 cursor-pointer">JanMitra</h1>
+            </Link>
             <p className="text-sm text-gray-600">
               {t.portalTitle}
             </p>
