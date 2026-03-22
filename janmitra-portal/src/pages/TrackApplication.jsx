@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function TrackApplication() {
 
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   const [searchValue,setSearchValue] = useState("");
   const [applications,setApplications] = useState([]);
@@ -47,30 +48,7 @@ function TrackApplication() {
   return (
   <div className="min-h-screen bg-gray-50">
 
-  {/* HEADER */}
-
-  <header className="bg-white shadow-md">
-  <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
-
-  <div>
-  <Link to="/">
-    <h1 className="text-2xl font-bold text-blue-700 cursor-pointer">JanMitra</h1>
-  </Link>
-  <p className="text-sm text-gray-600">{t.portalTitle}</p>
-  </div>
-
-  <select
-    className="border p-2 rounded"
-    value={language}
-    onChange={(e)=>setLanguage(e.target.value)}
-  >
-    <option value="en">English</option>
-    <option value="hi">Hindi</option>
-    <option value="kn">Kannada</option>
-  </select>
-
-  </div>
-  </header>
+  <Header />
 
   {/* TITLE */}
 
@@ -167,40 +145,7 @@ function TrackApplication() {
 
   )}
 
-  {/* Footer */}
-
-  <footer className="bg-blue-700 text-white mt-12">
-
-    <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
-
-      <div>
-        <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
-        <p className="text-sm">
-          {t.aboutDesc}
-        </p>
-      </div>
-
-      <div>
-        <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
-        <p className="text-sm">
-          {t.helpDesc}
-        </p>
-      </div>
-
-      <div>
-        <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
-        <p className="text-sm">
-          {t.panchayatDesc}
-        </p>
-      </div>
-
-    </div>
-
-    <div className="text-center pb-4 text-sm">
-      {t.footerTagline}
-    </div>
-
-  </footer>
+  <Footer />
 
   </div>
   );
