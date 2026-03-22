@@ -7,7 +7,14 @@ const translations = {
     governmentSchemes: "Government Schemes",
     trackApplication: "Track My Application",
     reportCorruption: "Report Corruption",
-    myDocuments: "My Documents"
+    myDocuments: "My Documents",
+    helpImproveTransparency: "Help improve transparency in public services.",
+    issueType: "Type of Issue",
+    selectIssue: "Select an Issue",
+    bribeDemanded: "Bribe Demanded",
+    applicationDelay: "Application Delay",
+    fakeBeneficiary: "Fake Beneficiary",
+    otherIssue: "Other Issue"
   },
 
   hi: {
@@ -17,7 +24,14 @@ const translations = {
     governmentSchemes: "सरकारी योजनाएं",
     trackApplication: "आवेदन की स्थिति देखें",
     reportCorruption: "भ्रष्टाचार की रिपोर्ट करें",
-    myDocuments: "मेरे दस्तावेज़"
+    myDocuments: "मेरे दस्तावेज़",
+    helpImproveTransparency: "सार्वजनिक सेवाओं में पारदर्शिता को बेहतर बनाने में मदद करें।",
+    issueType: "समस्या का प्रकार",
+    selectIssue: "समस्या चुनें",
+    bribeDemanded: "रिश्वत की मांग",
+    applicationDelay: "आवेदन में देरी",
+    fakeBeneficiary: "फर्जी लाभार्थी",
+    otherIssue: "अन्य समस्या"
   },
 
   kn: {
@@ -27,7 +41,14 @@ const translations = {
     governmentSchemes: "ಸರ್ಕಾರಿ ಯೋಜನೆಗಳು",
     trackApplication: "ಅರ್ಜಿಯ ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ",
     reportCorruption: "ಭ್ರಷ್ಟಾಚಾರವನ್ನು ವರದಿ ಮಾಡಿ",
-    myDocuments: "ನನ್ನ ದಾಖಲೆಗಳು"
+    myDocuments: "ನನ್ನ ದಾಖಲೆಗಳು",
+    helpImproveTransparency: "ಸಾರ್ವಜನಿಕ ಸೇವೆಗಳಲ್ಲಿ ಪಾರದರ್ಶಕತೆಯನ್ನು ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡಿ.",
+    issueType: "ಸಮಸ್ಯೆಯ ಪ್ರಕಾರ",
+    selectIssue: "ಸಮಸ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    bribeDemanded: "ಲಂಚ ಬೇಡಿಕೆ",
+    applicationDelay: "ಅರ್ಜಿಯಲ್ಲಿ ವಿಳಂಬ",
+    fakeBeneficiary: "ನಕಲಿ ಫಲಾನುಭವಿ",
+    otherIssue: "ಇತರ ಸಮಸ್ಯೆ"
   }
 
 };
