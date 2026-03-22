@@ -7,16 +7,15 @@ function TrackApplication() {
 
   const { t } = useLanguage();
 
-  const [searchValue,setSearchValue] = useState("");
-  const [applications,setApplications] = useState([]);
-  const [showResults,setShowResults] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [applications, setApplications] = useState([]);
+  const [showResults, setShowResults] = useState(false);
 
   const getStatusColor = (status) => {
-    if (status === "Approved") return "text-brand-green font-semibold";
-    if (status === "Processing") return "text-yellow-600 font-semibold";
-    if (status === "Pending") return "text-yellow-600 font-semibold";
-    if (status === "Rejected") return "text-red-600 font-semibold";
-    return "";
+    if (status === "Approved") return "text-brand-green bg-green-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
+    if (status === "Processing" || status === "Pending") return "text-brand-orange bg-orange-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
+    if (status === "Rejected") return "text-red-600 bg-red-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
+    return "text-gray-600 bg-gray-50 px-3 py-1 rounded-full text-xs font-bold uppercase";
   };
 
   const handleSubmit = async (e) => {
@@ -37,117 +36,110 @@ function TrackApplication() {
 
       setShowResults(true);
 
-    } catch(error) {
+    } catch (error) {
 
-      console.error("Error fetching applications:",error);
+      console.error("Error fetching applications:", error);
 
     }
 
   };
 
   return (
-  <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-brand-surface font-sans">
 
-  <Header />
+      <Header />
 
-  {/* TITLE */}
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+        <h2 className="text-4xl font-display font-bold mb-4">
+          {t.trackAppTitle}
+        </h2>
+        <p className="text-xl opacity-90 max-w-2xl mx-auto">
+          {t.trackAppDesc}
+        </p>
+      </section>
 
-  <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-12 px-6">
+      {/* Search Section */}
+      <main className="max-w-3xl mx-auto py-12 px-6">
+        <div className="card-elevated">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                {t.enterAadhaarLabel}
+              </label>
+              <div className="flex flex-col md:flex-row gap-4">
+                <input
+                  type="text"
+                  placeholder={t.enterAadhaarPlaceholder}
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  required
+                  className="input-field flex-grow"
+                />
+                <button
+                  type="submit"
+                  className="btn-primary whitespace-nowrap"
+                >
+                  {t.checkStatusBtn}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
 
-  <h2 className="text-3xl font-bold mb-2">
-  {t.trackAppTitle}
-  </h2>
+      {/* Results Section */}
+      {showResults && (
+        <section className="max-w-6xl mx-auto py-12 px-6">
+          <h3 className="text-3xl font-display font-bold text-center mb-8 text-gray-800">
+            {t.appStatusTitle}
+          </h3>
 
-  <p className="text-lg">
-  {t.trackAppDesc}
-  </p>
+          <div className="rounded-2xl overflow-hidden shadow-soft bg-white">
+            <table className="w-full text-left border-collapse">
+              <thead className="bg-gray-50 border-b border-gray-100">
+                <tr>
+                  <th className="p-5 font-semibold text-gray-700">{t.certificateColumn}</th>
+                  <th className="p-5 font-semibold text-gray-700">{t.statusColumn}</th>
+                  <th className="p-5 font-semibold text-gray-700 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
+                {applications.length > 0 ? (
+                  applications.map((app, index) => (
+                    <tr key={index} className="hover:bg-gray-50/50 transition-colors">
+                      <td className="p-5">
+                        <div className="font-medium text-gray-900">{app.certificateType}</div>
+                        <div className="text-xs text-gray-500 mt-1">Ref: #JM-{Math.random().toString(36).substr(2, 9).toUpperCase()}</div>
+                      </td>
+                      <td className="p-5">
+                        <span className={getStatusColor(app.status)}>
+                          {app.status || "Pending"}
+                        </span>
+                      </td>
+                      <td className="p-5 text-right">
+                        <button className="text-brand-blue hover:text-brand-blue-dark font-semibold text-sm">
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="3" className="p-12 text-center text-gray-500">
+                      No applications found for this Aadhaar number.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
-  </section>
+      <Footer />
 
-  {/* SEARCH */}
-
-  <section className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow mt-10">
-
-  <form onSubmit={handleSubmit} className="space-y-5">
-
-  <div>
-
-  <label className="block font-semibold mb-2">
-  {t.enterAadhaarLabel}
-  </label>
-
-  <input
-  type="text"
-  placeholder={t.enterAadhaarPlaceholder}
-  value={searchValue}
-  onChange={(e)=>setSearchValue(e.target.value)}
-  required
-  className="w-full border p-3 rounded"
-  />
-
-  </div>
-
-  <button
-  type="submit"
-  className="bg-brand-orange hover:bg-brand-orange-dark text-white px-6 py-3 rounded font-semibold"
-  >
-  {t.checkStatusBtn}
-  </button>
-
-  </form>
-
-  </section>
-
-  {/* RESULTS */}
-
-  {showResults && (
-
-  <section className="max-w-6xl mx-auto py-12 px-6">
-
-  <h3 className="text-2xl font-bold text-center mb-8 text-gray-700">
-  {t.appStatusTitle}
-  </h3>
-
-  <div className="bg-white rounded-lg shadow overflow-hidden">
-
-  <table className="w-full text-left">
-
-  <thead className="bg-gray-100">
-
-  <tr>
-  <th className="p-4">{t.certificateColumn}</th>
-  <th className="p-4">{t.statusColumn}</th>
-  </tr>
-
-  </thead>
-
-  <tbody>
-
-  {applications.map((app,index)=>(
-  <tr key={index} className="border-t">
-
-  <td className="p-4">{app.certificateType}</td>
-
-  <td className={`p-4 ${getStatusColor(app.status)}`}>
-  {app.status}
-  </td>
-
-  </tr>
-  ))}
-
-  </tbody>
-
-  </table>
-
-  </div>
-
-  </section>
-
-  )}
-
-  <Footer />
-
-  </div>
+    </div>
   );
 
 }

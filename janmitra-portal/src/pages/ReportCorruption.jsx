@@ -61,118 +61,109 @@ function ReportCorruption() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-brand-surface font-sans">
 
       <Header />
 
       {/* Hero Section */}
-
-      <section className="bg-gradient-to-r from-brand-blue to-brand-green text-white text-center py-12 px-6">
-
-        <h2 className="text-3xl font-bold mb-2">
+      <section className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white py-12 px-6 text-center">
+        <h2 className="text-4xl font-display font-bold mb-4">
           {t.reportCorruption}
         </h2>
-
-        <p className="text-lg">
+        <p className="text-xl opacity-90 max-w-2xl mx-auto">
           {t.helpImproveTransparency}
         </p>
-
       </section>
 
       {/* Form Section */}
+      <main className="max-w-3xl mx-auto py-12 px-6">
+        <div className="card-elevated">
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {t.issueType}
+                </label>
+                <select
+                  name="issueType"
+                  required
+                  onChange={handleChange}
+                  className="input-field"
+                >
+                  <option value="">{t.selectIssue}</option>
+                  <option>{t.bribeDemanded}</option>
+                  <option>{t.applicationDelay}</option>
+                  <option>{t.fakeBeneficiary}</option>
+                  <option>{t.otherIssue}</option>
+                </select>
+              </div>
 
-      <section className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow mt-10">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {t.locationLabel}
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  required
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Where did this occur?"
+                />
+              </div>
 
-        {!submitted ? (
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {t.descriptionLabel}
+                </label>
+                <textarea
+                  name="description"
+                  rows="4"
+                  required
+                  onChange={handleChange}
+                  className="input-field"
+                  placeholder="Please provide details..."
+                />
+              </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {t.uploadPhotoOptional}
+                </label>
+                <input
+                  type="file"
+                  name="photo"
+                  onChange={handleChange}
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue/10 file:text-brand-blue hover:file:bg-brand-blue/20"
+                />
+              </div>
 
-            <div>
-              <label className="block font-semibold mb-1">
-                {t.issueType}
-              </label>
-
-              <select
-                name="issueType"
-                required
-                onChange={handleChange}
-                className="w-full border p-3 rounded"
-              >
-                <option value="">{t.selectIssue}</option>
-                <option>{t.bribeDemanded}</option>
-                <option>{t.applicationDelay}</option>
-                <option>{t.fakeBeneficiary}</option>
-                <option>{t.otherIssue}</option>
-              </select>
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  className="btn-primary w-full md:w-auto px-8"
+                >
+                  {t.submitReportBtn}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="text-center p-8 bg-green-50 rounded-2xl border border-green-100">
+              <div className="w-16 h-16 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-display font-bold text-brand-green mb-2">
+                {t.reportSubmittedTitle}
+              </h3>
+              <p className="text-gray-700">
+                {t.reportSubmittedDesc}
+              </p>
             </div>
-
-            <div>
-              <label className="block font-semibold mb-1">
-                {t.locationLabel}
-              </label>
-
-              <input
-                type="text"
-                name="location"
-                required
-                onChange={handleChange}
-                className="w-full border p-3 rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold mb-1">
-                {t.descriptionLabel}
-              </label>
-
-              <textarea
-                name="description"
-                rows="4"
-                required
-                onChange={handleChange}
-                className="w-full border p-3 rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold mb-1">
-                {t.uploadPhotoOptional}
-              </label>
-
-              <input
-                type="file"
-                name="photo"
-                onChange={handleChange}
-                className="w-full"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="bg-brand-orange hover:bg-brand-orange-dark text-white px-6 py-3 rounded font-semibold"
-            >
-              {t.submitReportBtn}
-            </button>
-
-          </form>
-
-        ) : (
-
-          <div className="text-center p-6">
-
-            <h3 className="text-xl font-bold text-brand-green mb-4">
-              {t.reportSubmittedTitle}
-            </h3>
-
-            <p className="text-gray-700">
-              {t.reportSubmittedDesc}
-            </p>
-
-          </div>
-
-        )}
-
-      </section>
+          )}
+        </div>
+      </main>
 
       <Footer />
 
