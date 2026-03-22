@@ -5,25 +5,25 @@ function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-brand-blue text-white mt-12">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 p-8">
+    <footer className="bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white mt-16 shadow-inner">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 p-10 md:p-16">
         <div>
-          <h4 className="font-semibold mb-2">{t.aboutJanMitra}</h4>
-          <p className="text-sm">{t.aboutDesc}</p>
+          <h4 className="font-display font-bold text-xl mb-4 border-b border-white/20 pb-2">{t.aboutJanMitra}</h4>
+          <p className="text-sm text-blue-50/80 leading-relaxed">{t.aboutDesc}</p>
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">{t.helpSupport}</h4>
-          <p className="text-sm">{t.helpDesc}</p>
+          <h4 className="font-display font-bold text-xl mb-4 border-b border-white/20 pb-2">{t.helpSupport}</h4>
+          <p className="text-sm text-blue-50/80 leading-relaxed">{t.helpDesc}</p>
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">{t.panchayatContact}</h4>
-          <p className="text-sm">{t.panchayatDesc}</p>
+          <h4 className="font-display font-bold text-xl mb-4 border-b border-white/20 pb-2">{t.panchayatContact}</h4>
+          <p className="text-sm text-blue-50/80 leading-relaxed">{t.panchayatDesc}</p>
         </div>
       </div>
 
-      <div className="text-center pb-4 text-sm">
+      <div className="text-center py-6 text-xs font-medium text-blue-100/60 bg-black/10">
         {t.footerTagline}
       </div>
     </footer>
