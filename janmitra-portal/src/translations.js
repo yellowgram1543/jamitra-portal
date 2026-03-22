@@ -21,7 +21,35 @@ const translations = {
     panDesc: "Permanent Account Number",
     drivingLicence: "Driving Licence",
     drivingLicenceDesc: "Official Driving Permit",
-    digiLockerStatus: "Available via DigiLocker"
+    digiLockerStatus: "Available via DigiLocker",
+
+    // Home Page Descriptions
+    applyCertDesc: "Apply for documents like income, caste, and birth certificates.",
+    schemesDesc: "Discover welfare schemes you are eligible for.",
+    trackDesc: "Check the status of your submitted requests.",
+    reportDesc: "Report delays, bribery, or misuse of government schemes.",
+    myDocsDesc: "Access Aadhaar, land records and other government documents.",
+    heroDesc: "Apply for certificates, discover schemes, and track applications from your village.",
+    getStarted: "Get Started",
+    availableServices: "Available Services",
+
+    // Certificate Application Page
+    submitRequest: "Submit your request for official certificates.",
+    fullName: "Full Name",
+    aadhaarNumber: "Aadhaar Number",
+    mobileNumber: "Mobile Number",
+    address: "Address",
+    certificateType: "Certificate Type",
+    selectCertificate: "Select Certificate",
+    incomeCert: "Income Certificate",
+    casteCert: "Caste Certificate",
+    birthCert: "Birth Certificate",
+    deathCert: "Death Certificate",
+    landRecord: "Land Record Copy",
+    uploadDoc: "Upload Document",
+    submitApp: "Submit Application",
+    appSaved: "Application Saved",
+    appSavedDesc: "Your application has been submitted successfully."
   },
 
   hi: {
@@ -45,7 +73,35 @@ const translations = {
     panDesc: "स्थायी खाता संख्या",
     drivingLicence: "ड्राइविंग लाइसेंस",
     drivingLicenceDesc: "आधिकारिक ड्राइविंग परमिट",
-    digiLockerStatus: "डिजिलॉकर के माध्यम से उपलब्ध"
+    digiLockerStatus: "डिजिलॉकर के माध्यम से उपलब्ध",
+
+    // Home Page Descriptions
+    applyCertDesc: "आय, जाति और जन्म प्रमाण पत्र जैसे दस्तावेजों के लिए आवेदन करें।",
+    schemesDesc: "उन कल्याणकारी योजनाओं की खोज करें जिनके लिए आप पात्र हैं।",
+    trackDesc: "अपने सबमिट किए गए अनुरोधों की स्थिति जांचें।",
+    reportDesc: "देरी, रिश्वतखोरी, या सरकारी योजनाओं के दुरुपयोग की रिपोर्ट करें।",
+    myDocsDesc: "आधार, भूमि रिकॉर्ड और अन्य सरकारी दस्तावेजों तक पहुंचें।",
+    heroDesc: "अपने गांव से प्रमाण पत्र के लिए आवेदन करें, योजनाएं खोजें, और आवेदन ट्रैक करें।",
+    getStarted: "शुरू करें",
+    availableServices: "उपलब्ध सेवाएं",
+
+    // Certificate Application Page
+    submitRequest: "आधिकारिक प्रमाण पत्र के लिए अपना अनुरोध सबमिट करें।",
+    fullName: "पूरा नाम",
+    aadhaarNumber: "आधार नंबर",
+    mobileNumber: "मोबाइल नंबर",
+    address: "पता",
+    certificateType: "प्रमाण पत्र का प्रकार",
+    selectCertificate: "प्रमाण पत्र चुनें",
+    incomeCert: "आय प्रमाण पत्र",
+    casteCert: "जाति प्रमाण पत्र",
+    birthCert: "जन्म प्रमाण पत्र",
+    deathCert: "मृत्यु प्रमाण पत्र",
+    landRecord: "भूमि रिकॉर्ड कॉपी",
+    uploadDoc: "दस्तावेज़ अपलोड करें",
+    submitApp: "आवेदन जमा करें",
+    appSaved: "आवेदन सुरक्षित किया गया",
+    appSavedDesc: "आपका आवेदन सफलतापूर्वक जमा कर दिया गया है।"
   },
 
   kn: {
@@ -69,7 +125,35 @@ const translations = {
     panDesc: "ಖಾಯಂ ಖಾತೆ ಸಂಖ್ಯೆ (PAN)",
     drivingLicence: "ಚಾಲನಾ ಪರವಾನಗಿ",
     drivingLicenceDesc: "ಅಧಿಕೃತ ಚಾಲನಾ ಪರವಾನಗಿ",
-    digiLockerStatus: "ಡಿಜಿಲಾಕರ್ ಮೂಲಕ ಲಭ್ಯವಿದೆ"
+    digiLockerStatus: "ಡಿಜಿಲಾಕರ್ ಮೂಲಕ ಲಭ್ಯವಿದೆ",
+
+    // Home Page Descriptions
+    applyCertDesc: "ಆದಾಯ, ಜಾತಿ ಮತ್ತು ಜನನ ಪ್ರಮಾಣಪತ್ರಗಳಂತಹ ದಾಖಲೆಗಳಿಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+    schemesDesc: "ನೀವು ಅರ್ಹರಾಗಿರುವ ಕಲ್ಯಾಣ ಯೋಜನೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
+    trackDesc: "ನೀವು ಸಲ್ಲಿಸಿದ ವಿನಂತಿಗಳ ಸ್ಥಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    reportDesc: "ವಿಳಂಬ, ಲಂಚ, ಅಥವಾ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳ ದುರ್ಬಳಕೆಯನ್ನು ವರದಿ ಮಾಡಿ.",
+    myDocsDesc: "ಆಧಾರ್, ಭೂ ದಾಖಲೆಗಳು ಮತ್ತು ಇತರ ಸರ್ಕಾರಿ ದಾಖಲೆಗಳನ್ನು ಪ್ರವೇಶಿಸಿ.",
+    heroDesc: "ನಿಮ್ಮ ಗ್ರಾಮದಿಂದಲೇ ಪ್ರಮಾಣಪತ್ರಗಳಿಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ, ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ ಮತ್ತು ಅರ್ಜಿಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ.",
+    getStarted: "ಪ್ರಾರಂಭಿಸಿ",
+    availableServices: "ಲಭ್ಯವಿರುವ ಸೇವೆಗಳು",
+
+    // Certificate Application Page
+    submitRequest: "ಅಧಿಕೃತ ಪ್ರಮಾಣಪತ್ರಗಳಿಗಾಗಿ ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಸಲ್ಲಿಸಿ.",
+    fullName: "ಪೂರ್ಣ ಹೆಸರು",
+    aadhaarNumber: "ಆಧಾರ್ ಸಂಖ್ಯೆ",
+    mobileNumber: "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",
+    address: "ವಿಳಾಸ",
+    certificateType: "ಪ್ರಮಾಣಪತ್ರದ ಪ್ರಕಾರ",
+    selectCertificate: "ಪ್ರಮಾಣಪತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    incomeCert: "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರ",
+    casteCert: "ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ",
+    birthCert: "ಜನನ ಪ್ರಮಾಣಪತ್ರ",
+    deathCert: "ಮರಣ ಪ್ರಮಾಣಪತ್ರ",
+    landRecord: "ಭೂ ದಾಖಲೆಯ ಪ್ರತಿ",
+    uploadDoc: "ದಾಖಲೆಯನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+    submitApp: "ಅರ್ಜಿಯನ್ನು ಸಲ್ಲಿಸಿ",
+    appSaved: "ಅರ್ಜಿಯನ್ನು ಉಳಿಸಲಾಗಿದೆ",
+    appSavedDesc: "ನಿಮ್ಮ ಅರ್ಜಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ."
   }
 
 };

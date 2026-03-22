@@ -10,31 +10,31 @@ function Home() {
     {
       icon: "📄",
       title: t.applyCertificates,
-      desc: "Apply for documents like income, caste, and birth certificates.",
+      desc: t.applyCertDesc,
       link: "/certificates"
     },
     {
       icon: "🏛",
       title: t.governmentSchemes,
-      desc: "Discover welfare schemes you are eligible for.",
+      desc: t.schemesDesc,
       link: "/schemes"
     },
     {
       icon: "📊",
       title: t.trackApplication,
-      desc: "Check the status of your submitted requests.",
+      desc: t.trackDesc,
       link: "/track"
     },
     {
       icon: "⚠",
       title: t.reportCorruption,
-      desc: "Report delays, bribery, or misuse of government schemes.",
+      desc: t.reportDesc,
       link: "/report"
     },
     {
       icon: "📂",
       title: t.myDocuments,
-      desc: "Access Aadhaar, land records and other government documents.",
+      desc: t.myDocsDesc,
       link: "/documents"
     }
   ];
@@ -77,11 +77,11 @@ function Home() {
         </h2>
 
         <p className="text-lg mb-6">
-          Apply for certificates, discover schemes, and track applications from your village.
+          {t.heroDesc}
         </p>
 
         <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded text-white font-semibold">
-          Get Started
+          {t.getStarted}
         </button>
 
       </section>
@@ -91,7 +91,7 @@ function Home() {
       <section className="max-w-6xl mx-auto py-12 px-6">
 
         <h3 className="text-2xl font-bold text-center mb-10 text-gray-700">
-          Available Services
+          {t.availableServices}
         </h3>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

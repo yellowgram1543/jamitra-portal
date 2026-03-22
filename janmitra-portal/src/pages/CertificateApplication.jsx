@@ -89,7 +89,7 @@ function CertificateApplication() {
         </h2>
 
         <p className="text-lg">
-          Submit your request for official certificates.
+          {t.submitRequest}
         </p>
 
       </section>
@@ -104,7 +104,7 @@ function CertificateApplication() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Full Name
+                {t.fullName}
               </label>
               <input
                 type="text"
@@ -117,7 +117,7 @@ function CertificateApplication() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Aadhaar Number
+                {t.aadhaarNumber}
               </label>
               <input
                 type="text"
@@ -130,7 +130,7 @@ function CertificateApplication() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Mobile Number
+                {t.mobileNumber}
               </label>
               <input
                 type="text"
@@ -143,7 +143,7 @@ function CertificateApplication() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Address
+                {t.address}
               </label>
               <textarea
                 name="address"
@@ -155,7 +155,7 @@ function CertificateApplication() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Certificate Type
+                {t.certificateType}
               </label>
 
               <select
@@ -165,12 +165,12 @@ function CertificateApplication() {
                 className="w-full border p-3 rounded"
               >
 
-                <option value="">Select Certificate</option>
-                <option>Income Certificate</option>
-                <option>Caste Certificate</option>
-                <option>Birth Certificate</option>
-                <option>Death Certificate</option>
-                <option>Land Record Copy</option>
+                <option value="">{t.selectCertificate}</option>
+                <option>{t.incomeCert}</option>
+                <option>{t.casteCert}</option>
+                <option>{t.birthCert}</option>
+                <option>{t.deathCert}</option>
+                <option>{t.landRecord}</option>
 
               </select>
 
@@ -178,7 +178,7 @@ function CertificateApplication() {
 
             <div>
               <label className="block font-semibold mb-1">
-                Upload Document
+                {t.uploadDoc}
               </label>
 
               <input
@@ -194,7 +194,7 @@ function CertificateApplication() {
               type="submit"
               className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold"
             >
-              Submit Application
+              {t.submitApp}
             </button>
 
           </form>
@@ -204,11 +204,11 @@ function CertificateApplication() {
           <div className="text-center p-6">
 
             <h3 className="text-xl font-bold text-green-600 mb-4">
-              Application Saved
+              {t.appSaved}
             </h3>
 
             <p className="text-gray-700">
-              Your application has been submitted successfully.
+              {t.appSavedDesc}
             </p>
 
           </div>
