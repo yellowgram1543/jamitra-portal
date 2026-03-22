@@ -14,7 +14,14 @@ const translations = {
     bribeDemanded: "Bribe Demanded",
     applicationDelay: "Application Delay",
     fakeBeneficiary: "Fake Beneficiary",
-    otherIssue: "Other Issue"
+    otherIssue: "Other Issue",
+    aadhaarCard: "Aadhaar Card",
+    aadhaarDesc: "Unique Identification Number",
+    panCard: "PAN Card",
+    panDesc: "Permanent Account Number",
+    drivingLicence: "Driving Licence",
+    drivingLicenceDesc: "Official Driving Permit",
+    digiLockerStatus: "Available via DigiLocker"
   },
 
   hi: {
@@ -31,7 +38,14 @@ const translations = {
     bribeDemanded: "रिश्वत की मांग",
     applicationDelay: "आवेदन में देरी",
     fakeBeneficiary: "फर्जी लाभार्थी",
-    otherIssue: "अन्य समस्या"
+    otherIssue: "अन्य समस्या",
+    aadhaarCard: "आधार कार्ड",
+    aadhaarDesc: "विशिष्ट पहचान संख्या",
+    panCard: "पैन कार्ड",
+    panDesc: "स्थायी खाता संख्या",
+    drivingLicence: "ड्राइविंग लाइसेंस",
+    drivingLicenceDesc: "आधिकारिक ड्राइविंग परमिट",
+    digiLockerStatus: "डिजिलॉकर के माध्यम से उपलब्ध"
   },
 
   kn: {
@@ -48,7 +62,14 @@ const translations = {
     bribeDemanded: "ಲಂಚ ಬೇಡಿಕೆ",
     applicationDelay: "ಅರ್ಜಿಯಲ್ಲಿ ವಿಳಂಬ",
     fakeBeneficiary: "ನಕಲಿ ಫಲಾನುಭವಿ",
-    otherIssue: "ಇತರ ಸಮಸ್ಯೆ"
+    otherIssue: "ಇತರ ಸಮಸ್ಯೆ",
+    aadhaarCard: "ಆಧಾರ್ ಕಾರ್ಡ್",
+    aadhaarDesc: "ವಿಶಿಷ್ಟ ಗುರುತಿನ ಸಂಖ್ಯೆ",
+    panCard: "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+    panDesc: "ಖಾಯಂ ಖಾತೆ ಸಂಖ್ಯೆ (PAN)",
+    drivingLicence: "ಚಾಲನಾ ಪರವಾನಗಿ",
+    drivingLicenceDesc: "ಅಧಿಕೃತ ಚಾಲನಾ ಪರವಾನಗಿ",
+    digiLockerStatus: "ಡಿಜಿಲಾಕರ್ ಮೂಲಕ ಲಭ್ಯವಿದೆ"
   }
 
 };
