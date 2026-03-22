@@ -3,16 +3,26 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import applicationRoutes from "./routes/applicationRoutes.js";
+import documentRoutes from "./routes/documentRoutes.js";
+import reportRoutes from "./routes/reportRoutes.js";
+import schemeRoutes from "./routes/schemeRoutes.js";
+
+dotenv.config();
+
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
-
-dotenv.config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/applications", applicationRoutes);
+app.use("/api/documents", documentRoutes);
+app.use("/api/reports", reportRoutes);
+app.use("/api/schemes", schemeRoutes);
 
 app.get("/", (req, res) => {
   res.send("Janmitra API running");
