@@ -28,6 +28,9 @@ function SchemeRecommender() {
     district: ""
   });
 
+  const [step, setStep] = useState(1);
+  const totalSteps = 4;
+
   const [showResults, setShowResults] = useState(false);
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -40,8 +43,25 @@ function SchemeRecommender() {
     });
   };
 
+  const nextStep = () => {
+    if (step < totalSteps) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const isStepValid = () => {
+    switch (step) {
+      case 1: return formData.occupation !== "";
+      case 2: return formData.income !== "" && formData.age !== "";
+      case 3: return formData.state !== "" && formData.district !== "";
+      default: return true;
+    }
+  };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setLoading(true);
     setError(null);
     setShowResults(false);
@@ -89,105 +109,198 @@ function SchemeRecommender() {
         </p>
       </section>
 
+      {/* Progress Bar */}
+      {!showResults && (
+        <div className="max-w-3xl mx-auto pt-12 px-6">
+          <div className="flex justify-between mb-2">
+            <span className="text-xs font-bold text-brand-navy uppercase tracking-wider">Step {step} of {totalSteps}</span>
+            <span className="text-xs font-bold text-brand-navy uppercase tracking-wider">{Math.round((step / totalSteps) * 100)}% Complete</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div 
+              className="bg-brand-saffron h-2 rounded-full transition-all duration-500 ease-out" 
+              style={{ width: `${(step / totalSteps) * 100}%` }}
+            ></div>
+          </div>
+        </div>
+      )}
+
       {/* Form Section */}
-      <main className="max-w-3xl mx-auto py-12 px-6">
-        <div className="card-elevated">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="md:col-span-2">
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <Briefcase size={16} className="text-brand-navy" />
-                  {t.occupation}
-                </label>
-                <select
-                  name="occupation"
-                  required
-                  onChange={handleChange}
-                  className="input-field"
-                  value={formData.occupation}
-                >
-                  <option value="">{t.selectOccupation}</option>
-                  <option value="farmer">{t.farmer}</option>
-                  <option value="student">{t.student}</option>
-                  <option value="worker">{t.worker}</option>
-                  <option value="small-business-owner">{t.smallBusiness}</option>
-                </select>
-              </div>
+      <main className="max-w-3xl mx-auto py-8 px-6">
+        {!showResults && (
+          <div className="card-elevated min-h-[400px] flex flex-col justify-between">
+            <div className="fade-in">
+              {step === 1 && (
+                <div className="space-y-6">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">What is your occupation?</h3>
+                    <p className="text-gray-500">We'll use this to find schemes specifically for your work.</p>
+                  </div>
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+                      <Briefcase size={16} className="text-brand-navy" />
+                      {t.occupation}
+                    </label>
+                    <select
+                      name="occupation"
+                      required
+                      onChange={handleChange}
+                      className="input-field text-lg py-4"
+                      value={formData.occupation}
+                    >
+                      <option value="">{t.selectOccupation}</option>
+                      <option value="farmer">{t.farmer}</option>
+                      <option value="student">{t.student}</option>
+                      <option value="worker">{t.worker}</option>
+                      <option value="small-business-owner">{t.smallBusiness}</option>
+                    </select>
+                  </div>
+                </div>
+              )}
 
-              <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <IndianRupee size={16} className="text-brand-navy" />
-                  {t.annualIncome}
-                </label>
-                <input
-                  type="number"
-                  name="income"
-                  required
-                  onChange={handleChange}
-                  className="input-field"
-                  placeholder="e.g. 50000"
-                  value={formData.income}
-                />
-              </div>
+              {step === 2 && (
+                <div className="space-y-8">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Personal Details</h3>
+                    <p className="text-gray-500">Your age and income help us determine eligibility.</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                        <IndianRupee size={16} className="text-brand-navy" />
+                        {t.annualIncome}
+                      </label>
+                      <input
+                        type="number"
+                        name="income"
+                        required
+                        onChange={handleChange}
+                        className="input-field"
+                        placeholder="e.g. 50000"
+                        value={formData.income}
+                      />
+                    </div>
 
-              <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <Calendar size={16} className="text-brand-navy" />
-                  {t.age}
-                </label>
-                <input
-                  type="number"
-                  name="age"
-                  required
-                  onChange={handleChange}
-                  className="input-field"
-                  placeholder="e.g. 25"
-                  value={formData.age}
-                />
-              </div>
+                    <div>
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                        <Calendar size={16} className="text-brand-navy" />
+                        {t.age}
+                      </label>
+                      <input
+                        type="number"
+                        name="age"
+                        required
+                        onChange={handleChange}
+                        className="input-field"
+                        placeholder="e.g. 25"
+                        value={formData.age}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
 
-              <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <MapPin size={16} className="text-brand-navy" />
-                  {t.state}
-                </label>
-                <input
-                  type="text"
-                  name="state"
-                  required
-                  onChange={handleChange}
-                  className="input-field"
-                  placeholder="Enter your state"
-                  value={formData.state}
-                />
-              </div>
+              {step === 3 && (
+                <div className="space-y-8">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Where are you located?</h3>
+                    <p className="text-gray-500">Some schemes are specific to certain states or districts.</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                        <MapPin size={16} className="text-brand-navy" />
+                        {t.state}
+                      </label>
+                      <input
+                        type="text"
+                        name="state"
+                        required
+                        onChange={handleChange}
+                        className="input-field"
+                        placeholder="Enter your state"
+                        value={formData.state}
+                      />
+                    </div>
 
-              <div>
-                <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                  <MapPin size={16} className="text-brand-navy" />
-                  {t.district}
-                </label>
-                <input
-                  type="text"
-                  name="district"
-                  required
-                  onChange={handleChange}
-                  className="input-field"
-                  placeholder="Enter your district"
-                  value={formData.district}
-                />
-              </div>
+                    <div>
+                      <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                        <MapPin size={16} className="text-brand-navy" />
+                        {t.district}
+                      </label>
+                      <input
+                        type="text"
+                        name="district"
+                        required
+                        onChange={handleChange}
+                        className="input-field"
+                        placeholder="Enter your district"
+                        value={formData.district}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {step === 4 && (
+                <div className="space-y-8">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Review your Information</h3>
+                    <p className="text-gray-500">Check if everything is correct before searching.</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-2xl p-6 space-y-4 border border-gray-100">
+                    <div className="flex justify-between border-b border-gray-200 pb-2">
+                      <span className="text-gray-500 font-medium">Occupation</span>
+                      <span className="font-bold text-brand-navy capitalize">{formData.occupation}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-gray-200 pb-2">
+                      <span className="text-gray-500 font-medium">Annual Income</span>
+                      <span className="font-bold text-brand-navy">₹{formData.income}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-gray-200 pb-2">
+                      <span className="text-gray-500 font-medium">Age</span>
+                      <span className="font-bold text-brand-navy">{formData.age} Years</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500 font-medium">Location</span>
+                      <span className="font-bold text-brand-navy">{formData.district}, {formData.state}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="pt-4 text-center">
-              <button
-                type="submit"
-                disabled={loading}
-                className={`btn-primary w-full md:w-auto px-12 flex items-center justify-center gap-2 mx-auto ${loading ? 'opacity-70 cursor-not-allowed shadow-none' : ''}`}
-              >
-                {loading ? <Loader2 size={20} className="animate-spin" /> : <Search size={20} />}
-                {loading ? "Fetching Schemes..." : t.findSchemesBtn}
-              </button>
+            <div className="flex gap-4 pt-12 border-t border-gray-100 mt-8">
+              {step > 1 && (
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  className="btn-secondary flex-1 py-4"
+                >
+                  Back
+                </button>
+              )}
+              
+              {step < totalSteps ? (
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  disabled={!isStepValid()}
+                  className={`btn-primary flex-[2] py-4 ${!isStepValid() ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  Continue
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className={`btn-primary flex-[2] py-4 flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                >
+                  {loading ? <Loader2 size={20} className="animate-spin" /> : <Search size={20} />}
+                  {loading ? "Fetching Schemes..." : t.findSchemesBtn}
+                </button>
+              )}
             </div>
 
             {error && (
@@ -196,8 +309,8 @@ function SchemeRecommender() {
                 <p>{error}</p>
               </div>
             )}
-          </form>
-        </div>
+          </div>
+        )}
       </main>
 
       {/* Results */}
