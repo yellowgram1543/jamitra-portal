@@ -8,7 +8,7 @@ router.post("/", upload.single("document"), async (req, res) => {
   try {
     const applicationData = {
       ...req.body,
-      document: req.file ? `/uploads/${req.file.filename}` : null
+      document: req.file ? req.file.path : null
     };
 
     const application = new Application(applicationData);

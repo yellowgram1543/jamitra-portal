@@ -8,7 +8,7 @@ router.post("/", upload.single("photo"), async (req, res) => {
   try {
     const reportData = {
       ...req.body,
-      photo: req.file ? `/uploads/${req.file.filename}` : null
+      photo: req.file ? req.file.path : null
     };
 
     const report = new Report(reportData);
