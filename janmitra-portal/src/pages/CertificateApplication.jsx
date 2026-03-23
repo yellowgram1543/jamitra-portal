@@ -11,7 +11,11 @@ import {
   CheckCircle,
   ArrowRight,
   ArrowLeft,
-  Loader2
+  Loader2,
+  Calendar,
+  Info,
+  Briefcase,
+  IndianRupee
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { API_BASE_URL } from "../config";
@@ -23,33 +27,55 @@ function CertificateApplication() {
   const { t } = useLanguage();
 
   const [step, setStep] = useState(1);
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const [formData, setFormData] = useState({
+    certificateType: "",
+    // Basic Details (Step 2)
     name: "",
+    fatherHusbandName: "",
+    gender: "",
+    dateOfBirth: "",
     aadhaar: "",
     mobile: "",
-    address: "",
-    certificateType: "",
-    document: null,
-    // Income specific
+    
+    // Certificate Specific Details (Step 3)
+    // Income
+    occupation: "",
     annualIncome: "",
-    purpose: "",
-    // Caste specific
-    casteName: "",
-    religion: "",
-    // Birth specific
+    incomeSource: "",
+    // Caste
+    caste: "",
+    subCaste: "",
+    category: "",
+    // Birth
     childName: "",
-    dateOfBirth: "",
-    gender: "",
-    // Death specific
+    birthTime: "",
+    birthPlace: "",
+    motherName: "",
+    // Death
     deceasedName: "",
     dateOfDeath: "",
+    timeOfDeath: "",
     causeOfDeath: "",
-    // Land Record specific
+    placeOfDeath: "",
+    applicantRelation: "",
+    // Land
     surveyNumber: "",
+    landType: "",
+    areaSize: "",
+    ownerName: "",
+    ownerFatherName: "",
+
+    // Address (Step 4)
     village: "",
-    taluk: ""
+    taluk: "",
+    district: "",
+    state: "",
+    pinCode: "",
+
+    // Documents (Step 5)
+    document: null
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -76,16 +102,17 @@ function CertificateApplication() {
   const isStepValid = () => {
     switch (step) {
       case 1: return formData.certificateType !== "";
-      case 2: return formData.name !== "" && formData.aadhaar.length === 12 && formData.mobile.length === 10 && formData.address !== "";
+      case 2: return formData.name !== "" && formData.fatherHusbandName !== "" && formData.gender !== "" && formData.dateOfBirth !== "" && formData.aadhaar.length === 12 && formData.mobile.length === 10;
       case 3: {
-        if (formData.certificateType === t.incomeCert) return formData.annualIncome !== "" && formData.purpose !== "";
-        if (formData.certificateType === t.casteCert) return formData.casteName !== "" && formData.religion !== "";
-        if (formData.certificateType === t.birthCert) return formData.childName !== "" && formData.dateOfBirth !== "" && formData.gender !== "";
-        if (formData.certificateType === t.deathCert) return formData.deceasedName !== "" && formData.dateOfDeath !== "" && formData.causeOfDeath !== "";
-        if (formData.certificateType === t.landRecord) return formData.surveyNumber !== "" && formData.village !== "" && formData.taluk !== "";
+        if (formData.certificateType === t.incomeCert) return formData.occupation !== "" && formData.annualIncome !== "" && formData.incomeSource !== "";
+        if (formData.certificateType === t.casteCert) return formData.caste !== "" && formData.subCaste !== "" && formData.category !== "";
+        if (formData.certificateType === t.birthCert) return formData.childName !== "" && formData.birthTime !== "" && formData.birthPlace !== "" && formData.motherName !== "";
+        if (formData.certificateType === t.deathCert) return formData.deceasedName !== "" && formData.dateOfDeath !== "" && formData.causeOfDeath !== "" && formData.applicantRelation !== "";
+        if (formData.certificateType === t.landRecord) return formData.surveyNumber !== "" && formData.landType !== "" && formData.areaSize !== "" && formData.ownerName !== "";
         return true;
       }
-      case 4: return formData.document !== null;
+      case 4: return formData.village !== "" && formData.taluk !== "" && formData.district !== "" && formData.state !== "" && formData.pinCode !== "";
+      case 5: return formData.document !== null;
       default: return true;
     }
   };
@@ -97,34 +124,11 @@ function CertificateApplication() {
     try {
       const formDataToSend = new FormData();
       
-      // Append core fields
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('aadhaar', formData.aadhaar);
-      formDataToSend.append('mobile', formData.mobile);
-      formDataToSend.append('address', formData.address);
-      formDataToSend.append('certificateType', formData.certificateType);
-      formDataToSend.append('document', formData.document);
-
-      // Append only relevant details
-      if (formData.certificateType === t.incomeCert) {
-        formDataToSend.append('annualIncome', formData.annualIncome);
-        formDataToSend.append('purpose', formData.purpose);
-      } else if (formData.certificateType === t.casteCert) {
-        formDataToSend.append('casteName', formData.casteName);
-        formDataToSend.append('religion', formData.religion);
-      } else if (formData.certificateType === t.birthCert) {
-        formDataToSend.append('childName', formData.childName);
-        formDataToSend.append('dateOfBirth', formData.dateOfBirth);
-        formDataToSend.append('gender', formData.gender);
-      } else if (formData.certificateType === t.deathCert) {
-        formDataToSend.append('deceasedName', formData.deceasedName);
-        formDataToSend.append('dateOfDeath', formData.dateOfDeath);
-        formDataToSend.append('causeOfDeath', formData.causeOfDeath);
-      } else if (formData.certificateType === t.landRecord) {
-        formDataToSend.append('surveyNumber', formData.surveyNumber);
-        formDataToSend.append('village', formData.village);
-        formDataToSend.append('taluk', formData.taluk);
-      }
+      Object.keys(formData).forEach(key => {
+        if (formData[key] !== "" && formData[key] !== null) {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
 
       const response = await fetch(`${API_BASE_URL}/applications`, {
         method: "POST",
@@ -149,43 +153,75 @@ function CertificateApplication() {
   };
 
   const renderStep3 = () => {
-    if (formData.certificateType === t.incomeCert) {
+    const type = formData.certificateType;
+    
+    if (type === t.incomeCert) {
       return (
         <div className="space-y-6 fade-in">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep3IncomeTitle}</h3>
             <p className="text-gray-500">{t.certStep3IncomeDesc}</p>
           </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.annualIncomeLabel}</label>
-            <input type="number" name="annualIncome" value={formData.annualIncome} onChange={handleChange} className="input-field" placeholder="e.g. 150000" required />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                <Briefcase size={16} className="text-brand-navy" /> {t.occupationLabel}
+              </label>
+              <input type="text" name="occupation" value={formData.occupation} onChange={handleChange} className="input-field" placeholder="e.g. Farmer" required />
+            </div>
+            <div>
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                <IndianRupee size={16} className="text-brand-navy" /> {t.annualIncomeLabel}
+              </label>
+              <input type="number" name="annualIncome" value={formData.annualIncome} onChange={handleChange} className="input-field" placeholder="Total per year" required />
+            </div>
           </div>
           <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.purposeLabel}</label>
-            <input type="text" name="purpose" value={formData.purpose} onChange={handleChange} className="input-field" placeholder="e.g. For Education" required />
+            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.incomeSource}</label>
+            <select name="incomeSource" value={formData.incomeSource} onChange={handleChange} className="input-field" required>
+              <option value="">{t.selectIssue || "Select"}</option>
+              <option value="Agriculture">{t.agriculture}</option>
+              <option value="Job/Salary">{t.salary}</option>
+              <option value="Business">{t.business}</option>
+              <option value="Other">{t.other}</option>
+            </select>
           </div>
         </div>
       );
     }
-    if (formData.certificateType === t.casteCert) {
+
+    if (type === t.casteCert) {
       return (
         <div className="space-y-6 fade-in">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep3CasteTitle}</h3>
             <p className="text-gray-500">{t.certStep3CasteDesc}</p>
           </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.casteNameLabel}</label>
-            <input type="text" name="casteName" value={formData.casteName} onChange={handleChange} className="input-field" placeholder="e.g. General" required />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.caste}</label>
+              <input type="text" name="caste" value={formData.caste} onChange={handleChange} className="input-field" required />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.subCaste}</label>
+              <input type="text" name="subCaste" value={formData.subCaste} onChange={handleChange} className="input-field" required />
+            </div>
           </div>
           <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.religionLabel}</label>
-            <input type="text" name="religion" value={formData.religion} onChange={handleChange} className="input-field" placeholder="e.g. Hindu" required />
+            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.category}</label>
+            <select name="category" value={formData.category} onChange={handleChange} className="input-field" required>
+              <option value="">{t.selectIssue || "Select"}</option>
+              <option value="SC">SC</option>
+              <option value="ST">ST</option>
+              <option value="OBC">OBC</option>
+              <option value="General">General</option>
+            </select>
           </div>
         </div>
       );
     }
-    if (formData.certificateType === t.birthCert) {
+
+    if (type === t.birthCert) {
       return (
         <div className="space-y-6 fade-in">
           <div className="text-center mb-8">
@@ -193,110 +229,143 @@ function CertificateApplication() {
             <p className="text-gray-500">{t.certStep3BirthDesc}</p>
           </div>
           <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.childNameLabel}</label>
-            <input type="text" name="childName" value={formData.childName} onChange={handleChange} className="input-field" placeholder="Name of the child" required />
+            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.childName}</label>
+            <input type="text" name="childName" value={formData.childName} onChange={handleChange} className="input-field" required />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                <Calendar size={16} /> {t.birthTime}
+              </label>
+              <input type="time" name="birthTime" value={formData.birthTime} onChange={handleChange} className="input-field" required />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.birthPlace}</label>
+              <select name="birthPlace" value={formData.birthPlace} onChange={handleChange} className="input-field" required>
+                <option value="">{t.selectIssue || "Select"}</option>
+                <option value="Hospital">{t.hospital}</option>
+                <option value="Home">{t.home}</option>
+              </select>
+            </div>
           </div>
           <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.dobLabel}</label>
-            <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="input-field" required />
-          </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.genderLabel}</label>
-            <select name="gender" value={formData.gender} onChange={handleChange} className="input-field" required>
-              <option value="">{t.selectGender || "Select Gender"}</option>
-              <option value="Male">{t.male}</option>
-              <option value="Female">{t.female}</option>
-              <option value="Other">{t.other}</option>
-            </select>
+            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.motherName}</label>
+            <input type="text" name="motherName" value={formData.motherName} onChange={handleChange} className="input-field" required />
           </div>
         </div>
       );
     }
-    if (formData.certificateType === t.deathCert) {
+
+    if (type === t.deathCert) {
       return (
         <div className="space-y-6 fade-in">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep3DeathTitle}</h3>
             <p className="text-gray-500">{t.certStep3DeathDesc}</p>
           </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.deceasedNameLabel}</label>
-            <input type="text" name="deceasedName" value={formData.deceasedName} onChange={handleChange} className="input-field" required />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.deceasedName}</label>
+              <input type="text" name="deceasedName" value={formData.deceasedName} onChange={handleChange} className="input-field" required />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.dateOfDeath}</label>
+              <input type="date" name="dateOfDeath" value={formData.dateOfDeath} onChange={handleChange} className="input-field" required />
+            </div>
           </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.dodLabel}</label>
-            <input type="date" name="dateOfDeath" value={formData.dateOfDeath} onChange={handleChange} className="input-field" required />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.timeOfDeath}</label>
+              <input type="time" name="timeOfDeath" value={formData.timeOfDeath} onChange={handleChange} className="input-field" />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.causeOfDeath}</label>
+              <input type="text" name="causeOfDeath" value={formData.causeOfDeath} onChange={handleChange} className="input-field" required />
+            </div>
           </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.causeOfDeathLabel}</label>
-            <input type="text" name="causeOfDeath" value={formData.causeOfDeath} onChange={handleChange} className="input-field" required />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.placeOfDeath}</label>
+              <input type="text" name="placeOfDeath" value={formData.placeOfDeath} onChange={handleChange} className="input-field" />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.relation}</label>
+              <input type="text" name="applicantRelation" value={formData.applicantRelation} onChange={handleChange} className="input-field" required />
+            </div>
           </div>
         </div>
       );
     }
-    if (formData.certificateType === t.landRecord) {
+
+    if (type === t.landRecord) {
       return (
         <div className="space-y-6 fade-in">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep3LandTitle}</h3>
             <p className="text-gray-500">{t.certStep3LandDesc}</p>
           </div>
-          <div>
-            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.surveyNumberLabel}</label>
-            <input type="text" name="surveyNumber" value={formData.surveyNumber} onChange={handleChange} className="input-field" placeholder="e.g. 120/A" required />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.villageLabel}</label>
-              <input type="text" name="village" value={formData.village} onChange={handleChange} className="input-field" required />
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.surveyNumber}</label>
+              <input type="text" name="surveyNumber" value={formData.surveyNumber} onChange={handleChange} className="input-field" required />
             </div>
             <div>
-              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.talukLabel}</label>
-              <input type="text" name="taluk" value={formData.taluk} onChange={handleChange} className="input-field" required />
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.landType}</label>
+              <select name="landType" value={formData.landType} onChange={handleChange} className="input-field" required>
+                <option value="">{t.selectIssue || "Select"}</option>
+                <option value="Agriculture">{t.agriculture}</option>
+                <option value="Residential">{t.residential}</option>
+                <option value="Commercial">{t.commercial}</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.areaSize}</label>
+            <input type="text" name="areaSize" value={formData.areaSize} onChange={handleChange} className="input-field" required />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.ownerName}</label>
+              <input type="text" name="ownerName" value={formData.ownerName} onChange={handleChange} className="input-field" required />
+            </div>
+            <div>
+              <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.ownerFather}</label>
+              <input type="text" name="ownerFatherName" value={formData.ownerFatherName} onChange={handleChange} className="input-field" required />
             </div>
           </div>
         </div>
       );
     }
-    return <p className="text-center py-10">Select a certificate type in the first step.</p>;
+
+    return null;
   };
 
   return (
     <div className="min-h-screen bg-brand-surface font-sans">
       <Header />
 
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-navy via-brand-navy/90 to-brand-green-dark text-white py-16 px-6 text-center">
         <div className="w-24 h-24 bg-brand-saffron/20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg backdrop-blur-sm border border-brand-saffron/30">
           <ClipboardSignature size={48} className="text-brand-saffron" />
         </div>
-        <h2 className="text-4xl font-display font-bold mb-4">
-          {t.applyCertificates}
-        </h2>
-        <p className="text-xl opacity-90 max-w-2xl mx-auto">
-          {t.submitRequest}
-        </p>
+        <h2 className="text-4xl font-display font-bold mb-4">{t.applyCertificates}</h2>
+        <p className="text-xl opacity-90 max-w-2xl mx-auto">{t.submitRequest}</p>
       </section>
 
-      {/* Progress Bar */}
       {!submitted && (
-        <div className="max-w-3xl mx-auto pt-12 px-6">
+        <div className="max-w-4xl mx-auto pt-12 px-6">
           <div className="flex justify-between mb-2">
-            <span className="text-xs font-bold text-brand-navy uppercase tracking-wider">Step {step} of {totalSteps}</span>
-            <span className="text-xs font-bold text-brand-navy uppercase tracking-wider">{Math.round((step / totalSteps) * 100)}% Complete</span>
+            <span className="text-xs font-bold text-brand-navy uppercase tracking-wider">{t.certStep1Title.split(' ')[0]} {step} of {totalSteps}</span>
+            <span className="text-xs font-bold text-brand-navy uppercase tracking-wider">{Math.round((step / totalSteps) * 100)}% {t.appSaved.split(' ')[1]}</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-brand-saffron h-2 rounded-full transition-all duration-500 ease-out" 
-              style={{ width: `${(step / totalSteps) * 100}%` }}
-            ></div>
+            <div className="bg-brand-saffron h-2 rounded-full transition-all duration-500 ease-out" style={{ width: `${(step / totalSteps) * 100}%` }}></div>
           </div>
         </div>
       )}
 
-      {/* Content Section */}
-      <main className="max-w-3xl mx-auto py-8 px-6">
-        <div className="card-elevated min-h-[450px] flex flex-col justify-between">
+      <main className="max-w-4xl mx-auto py-8 px-6">
+        <div className="card-elevated min-h-[500px] flex flex-col justify-between">
           {!submitted ? (
             <>
               <div className="fade-in">
@@ -306,15 +375,13 @@ function CertificateApplication() {
                       <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep1Title}</h3>
                       <p className="text-gray-500">{t.certStep1Desc}</p>
                     </div>
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {[t.incomeCert, t.casteCert, t.birthCert, t.deathCert, t.landRecord].map((type) => (
                         <button
                           key={type}
                           onClick={() => setFormData({ ...formData, certificateType: type })}
                           className={`p-4 rounded-xl border-2 text-left flex items-center gap-4 transition-all duration-200 ${
-                            formData.certificateType === type 
-                              ? "border-brand-saffron bg-brand-saffron/5 shadow-md" 
-                              : "border-gray-100 hover:border-gray-200"
+                            formData.certificateType === type ? "border-brand-saffron bg-brand-saffron/5 shadow-md" : "border-gray-100 hover:border-gray-200"
                           }`}
                         >
                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${formData.certificateType === type ? 'bg-brand-saffron text-white' : 'bg-gray-100 text-gray-400'}`}>
@@ -333,36 +400,45 @@ function CertificateApplication() {
                       <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep2Title}</h3>
                       <p className="text-gray-500">{t.certStep2Desc}</p>
                     </div>
-                    <div className="grid grid-cols-1 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <User size={16} className="text-brand-navy" />
-                          {t.fullName}
+                          <User size={16} className="text-brand-navy" /> {t.fullName}
                         </label>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} className="input-field" placeholder="Full name as per Aadhaar" required />
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} className="input-field" required />
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                            <Hash size={16} className="text-brand-navy" />
-                            {t.aadhaarNumber}
-                          </label>
-                          <input type="text" name="aadhaar" maxLength="12" value={formData.aadhaar} onChange={handleChange} className="input-field" placeholder="12-digit Number" required />
-                        </div>
-                        <div>
-                          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                            <Phone size={16} className="text-brand-navy" />
-                            {t.mobileNumber}
-                          </label>
-                          <input type="text" name="mobile" maxLength="10" value={formData.mobile} onChange={handleChange} className="input-field" placeholder="10-digit Mobile" required />
-                        </div>
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.fatherHusbandName}</label>
+                        <input type="text" name="fatherHusbandName" value={formData.fatherHusbandName} onChange={handleChange} className="input-field" required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.gender}</label>
+                        <select name="gender" value={formData.gender} onChange={handleChange} className="input-field" required>
+                          <option value="">{t.selectIssue || "Select"}</option>
+                          <option value="Male">{t.male}</option>
+                          <option value="Female">{t.female}</option>
+                          <option value="Other">{t.otherGender}</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.dateOfBirth}</label>
+                        <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} className="input-field" required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+                          <Hash size={16} className="text-brand-navy" /> {t.aadhaarNumber}
+                        </label>
+                        <input type="text" name="aadhaar" maxLength="12" value={formData.aadhaar} onChange={handleChange} className="input-field" required />
                       </div>
                       <div>
                         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <MapPin size={16} className="text-brand-navy" />
-                          {t.address}
+                          <Phone size={16} className="text-brand-navy" /> {t.mobileNumber}
                         </label>
-                        <textarea name="address" rows="3" value={formData.address} onChange={handleChange} className="input-field" required />
+                        <input type="text" name="mobile" maxLength="10" value={formData.mobile} onChange={handleChange} className="input-field" required />
                       </div>
                     </div>
                   </div>
@@ -376,24 +452,61 @@ function CertificateApplication() {
                       <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep4Title}</h3>
                       <p className="text-gray-500">{t.certStep4Desc}</p>
                     </div>
-                    <div className="bg-gray-50 p-8 rounded-2xl border-2 border-dashed border-gray-200 text-center">
-                      <Upload size={48} className="mx-auto text-gray-300 mb-4" />
-                      <input
-                        type="file"
-                        id="doc-upload"
-                        name="document"
-                        onChange={handleChange}
-                        className="hidden"
-                      />
-                      <label htmlFor="doc-upload" className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl font-bold text-brand-navy hover:bg-gray-50 transition-colors">
-                        {formData.document ? formData.document.name : t.chooseFile}
-                      </label>
-                      <p className="text-xs text-gray-400 mt-4">Supported formats: JPG, PNG, PDF</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.village}</label>
+                        <input type="text" name="village" value={formData.village} onChange={handleChange} className="input-field" required />
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.taluk}</label>
+                        <input type="text" name="taluk" value={formData.taluk} onChange={handleChange} className="input-field" required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.district}</label>
+                        <input type="text" name="district" value={formData.district} onChange={handleChange} className="input-field" required />
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.state}</label>
+                        <input type="text" name="state" value={formData.state} onChange={handleChange} className="input-field" required />
+                      </div>
+                      <div>
+                        <label className="text-sm font-semibold text-gray-700 mb-2 block">{t.pinCode}</label>
+                        <input type="text" name="pinCode" maxLength="6" value={formData.pinCode} onChange={handleChange} className="input-field" required />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {step === 5 && (
+                  <div className="space-y-6">
+                    <div className="text-center mb-8">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-2">{t.certStep5Title}</h3>
+                      <p className="text-gray-500">{t.certStep5Desc}</p>
                     </div>
                     
-                    <div className="bg-brand-navy/5 p-4 rounded-xl flex gap-3">
-                      <CheckCircle size={20} className="text-brand-navy shrink-0" />
-                      <p className="text-xs text-brand-navy leading-relaxed">By submitting, you declare that the information provided is correct to the best of your knowledge.</p>
+                    <div className="bg-brand-navy/5 p-6 rounded-2xl mb-6">
+                      <h4 className="font-bold text-brand-navy flex items-center gap-2 mb-3">
+                        <Info size={18} /> {t.requiredDocs}
+                      </h4>
+                      <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5">
+                        <li>{t.aadhaarProof}</li>
+                        {formData.certificateType === t.incomeCert && <li>{t.incomeProof}</li>}
+                        {formData.certificateType === t.casteCert && <li>{t.casteProof}</li>}
+                        {formData.certificateType === t.birthCert && <li>{t.birthProof}</li>}
+                        {formData.certificateType === t.deathCert && <li>{t.deathProof}</li>}
+                        {formData.certificateType === t.landRecord && <li>{t.landProof}</li>}
+                      </ul>
+                    </div>
+
+                    <div className="bg-gray-50 p-10 rounded-2xl border-2 border-dashed border-gray-200 text-center">
+                      <Upload size={48} className="mx-auto text-gray-300 mb-4" />
+                      <input type="file" id="doc-upload" name="document" onChange={handleChange} className="hidden" />
+                      <label htmlFor="doc-upload" className="cursor-pointer inline-flex items-center gap-2 px-8 py-4 bg-white border border-gray-200 rounded-xl font-bold text-brand-navy hover:bg-gray-50 transition-colors shadow-sm">
+                        {formData.document ? formData.document.name : t.chooseFile}
+                      </label>
+                      <p className="text-xs text-gray-400 mt-4 uppercase tracking-widest font-semibold">PDF, JPG or PNG (Max 5MB)</p>
                     </div>
                   </div>
                 )}
@@ -406,19 +519,11 @@ function CertificateApplication() {
                   </button>
                 )}
                 {step < totalSteps ? (
-                  <button 
-                    onClick={nextStep} 
-                    disabled={!isStepValid()} 
-                    className={`btn-primary flex-[2] py-4 flex items-center justify-center gap-2 ${!isStepValid() ? 'opacity-50 cursor-not-allowed shadow-none' : ''}`}
-                  >
+                  <button onClick={nextStep} disabled={!isStepValid()} className={`btn-primary flex-[2] py-4 flex items-center justify-center gap-2 ${!isStepValid() ? 'opacity-50 cursor-not-allowed shadow-none' : ''}`}>
                     {t.continue} <ArrowRight size={18} />
                   </button>
                 ) : (
-                  <button 
-                    onClick={handleSubmit} 
-                    disabled={!isStepValid() || loading} 
-                    className={`btn-primary flex-[2] py-4 flex items-center justify-center gap-2 ${(!isStepValid() || loading) ? 'opacity-70 cursor-not-allowed shadow-none' : ''}`}
-                  >
+                  <button onClick={handleSubmit} disabled={!isStepValid() || loading} className={`btn-primary flex-[2] py-4 flex items-center justify-center gap-2 ${(!isStepValid() || loading) ? 'opacity-70 cursor-not-allowed shadow-none' : ''}`}>
                     {loading ? <Loader2 size={20} className="animate-spin" /> : <CheckCircle size={20} />}
                     {loading ? t.submitting : t.submitApp}
                   </button>
@@ -430,15 +535,12 @@ function CertificateApplication() {
               <div className="w-20 h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10 text-brand-green" />
               </div>
-              <h3 className="text-3xl font-display font-bold text-brand-green mb-4">
-                {t.appSaved}
-              </h3>
-              <p className="text-gray-700 text-lg mb-8">
-                {t.appSavedDesc}
-              </p>
-              <button onClick={() => window.location.href = "/track"} className="btn-primary">
-                {t.trackStatus}
-              </button>
+              <h3 className="text-3xl font-display font-bold text-brand-green mb-4">{t.appSaved}</h3>
+              <p className="text-gray-700 text-lg mb-8">{t.appSavedDesc}</p>
+              <div className="flex flex-col md:flex-row gap-4 justify-center">
+                <button onClick={() => window.location.href = "/track"} className="btn-primary">{t.trackStatus}</button>
+                <button onClick={() => window.location.href = "/"} className="btn-secondary">{t.backToHome}</button>
+              </div>
             </div>
           )}
         </div>
