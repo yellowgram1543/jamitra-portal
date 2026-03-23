@@ -15,16 +15,17 @@ router.post("/", upload.single("photo"), async (req, res) => {
     await report.save();
     res.json(report);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({ message: messages[0] });
+    }
+    res.status(500).json({ message: "Error saving report", error: error.message });
   }
 });
 
-router.get("/", async (req,res)=>{
-
+router.get("/", async (req, res) => {
   const reports = await Report.find();
-
   res.json(reports);
-
 });
 
 export default router;

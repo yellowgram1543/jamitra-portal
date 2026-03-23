@@ -62,6 +62,10 @@ function CertificateApplication() {
 
       const data = await response.json();
 
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to submit application");
+      }
+
       console.log(data);
 
       setSubmitted(true);
@@ -70,7 +74,7 @@ function CertificateApplication() {
     } catch (error) {
 
       console.error("Error submitting application:", error);
-      toast.error("Failed to submit application. Please try again.");
+      toast.error(error.message || "Failed to submit application. Please try again.");
 
     }
 

@@ -60,16 +60,18 @@ function ReportCorruption() {
         body: formDataToSend
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to submit report");
+        throw new Error(data.message || data.error || "Failed to submit report");
       }
 
       setSubmitted(true);
       toast.success(t.reportSubmittedTitle || "Report Submitted Successfully!");
     } catch (error) {
       console.error("Error submitting report:", error);
-      setError(t.errorFetching || "An error occurred while submitting. Please try again.");
-      toast.error("Failed to submit report. Please try again.");
+      setError(error.message || t.errorFetching || "An error occurred while submitting. Please try again.");
+      toast.error(error.message || "Failed to submit report. Please try again.");
     } finally {
       setLoading(false);
     }

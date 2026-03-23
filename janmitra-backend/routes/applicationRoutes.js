@@ -15,16 +15,17 @@ router.post("/", upload.single("document"), async (req, res) => {
     await application.save();
     res.json(application);
   } catch (error) {
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({ message: messages[0] });
+    }
     res.status(500).json({ message: "Error saving application", error: error.message });
   }
 });
 
 router.get("/", async (req, res) => {
-
   const applications = await Application.find();
-
   res.json(applications);
-
 });
 
 export default router;
