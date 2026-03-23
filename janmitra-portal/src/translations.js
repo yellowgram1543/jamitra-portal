@@ -23,6 +23,16 @@ const translations = {
     drivingLicenceDesc: "Official Driving Permit",
     digiLockerStatus: "Available via DigiLocker",
 
+    // Auth
+    loginTitle: "Citizen Login",
+    loginDesc: "Enter your mobile number to access your personalized dashboard.",
+    mobilePlaceholder: "10-digit Mobile Number",
+    loginBtn: "Login / Register",
+    logoutBtn: "Log Out",
+    welcomeBack: "Welcome back",
+    guestUser: "Guest User",
+    verifyAccount: "Verify your identity",
+
     // Home Page Descriptions
     applyCertDesc: "Apply for documents like income, caste, and birth certificates.",
     schemesDesc: "Discover welfare schemes you are eligible for.",
@@ -216,6 +226,16 @@ const translations = {
     drivingLicenceDesc: "आधिकारिक ड्राइविंग परमिट",
     digiLockerStatus: "डिजिलॉकर के माध्यम से उपलब्ध",
 
+    // Auth
+    loginTitle: "नागरिक लॉगिन",
+    loginDesc: "अपने व्यक्तिगत डैशबोर्ड तक पहुंचने के लिए अपना मोबाइल नंबर दर्ज करें।",
+    mobilePlaceholder: "10-अंकों का मोबाइल नंबर",
+    loginBtn: "लॉगिन / रजिस्टर",
+    logoutBtn: "लॉग आउट",
+    welcomeBack: "आपका स्वागत है",
+    guestUser: "अतिथि उपयोगकर्ता",
+    verifyAccount: "अपनी पहचान सत्यापित करें",
+
     // Home Page Descriptions
     applyCertDesc: "आय, जाति और जन्म प्रमाण पत्र जैसे दस्तावेजों के लिए आवेदन करें।",
     schemesDesc: "उन कल्याणकारी योजनाओं की खोज करें जिनके लिए आप पात्र हैं।",
@@ -346,7 +366,7 @@ const translations = {
     state: "राज्य",
     district: "जिला",
     findSchemesBtn: "योजनाएं खोजें",
-    recommendedSchemes: "अनुशंसित योजनाएं",
+    recommendedSchemes: "अनुशंसಿತ योजनाएं",
     learnMore: "और जानें",
     noSchemesFound: "आपके चयन के लिए कोई योजना नहीं मिली।",
     loading: "योजनाएं खोजी जा रही हैं...",
@@ -408,6 +428,16 @@ const translations = {
     drivingLicence: "ಚಾಲನಾ ಪರವಾನಗಿ",
     drivingLicenceDesc: "ಅಧಿಕೃತ ಚಾಲನಾ ಪರವಾನಗಿ",
     digiLockerStatus: "ಡಿಜಿಲಾಕರ್ ಮೂಲಕ ಲಭ್ಯವಿದೆ",
+
+    // Auth
+    loginTitle: "ನಾಗರಿಕ ಲಾಗಿನ್",
+    loginDesc: "ನಿಮ್ಮ ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.",
+    mobilePlaceholder: "10-ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",
+    loginBtn: "ಲಾಗಿನ್ / ನೋಂದಣಿ",
+    logoutBtn: "ಲಾಗ್ ಔಟ್",
+    welcomeBack: "ಸುಸ್ವಾಗತ",
+    guestUser: "ಅತಿಥಿ ಬಳಕೆದಾರ",
+    verifyAccount: "ನಿಮ್ಮ ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ",
 
     // Home Page Descriptions
     applyCertDesc: "ಆದಾಯ, ಜಾತಿ ಮತ್ತು ಜನನ ಪ್ರಮಾಣಪತ್ರಗಳಂತಹ ದಾಖಲೆಗಳಿಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
@@ -479,6 +509,7 @@ const translations = {
     home: "ಮನೆ",
     motherName: "ತಾಯಿಯ ಪೂರ್ಣ ಹೆಸರು",
     deceasedName: "ಮೃತರ ಹೆಸರು",
+    dateOfBirth: "ಹುಟ್ಟಿದ ದಿನಾಂಕ",
     dateOfDeath: "ಮರಣದ ದಿನಾಂಕ",
     timeOfDeath: "ಮರಣದ ಸಮಯ",
     causeOfDeath: "ಮರಣಕ್ಕೆ ಕಾರಣ",
@@ -565,7 +596,7 @@ const translations = {
 
     // My Documents
     myGovDocsTitle: "ನನ್ನ ಸರ್ಕಾರಿ ದಾಖಲೆಗಳು",
-    myGovDocsDesc: "ವೈಯಕ್ತಿಕ ಐಡಿಗಳನ್ನು ಪ್ರವೇಶಿಸಿ ಮತ್ತು ಪ್ರಮುಖ ದಾಖಲೆಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ.",
+    myGovDocsDesc: "ವೈಯಿಕ ಐಡಿಗಳನ್ನು ಪ್ರವೇಶಿಸಿ ಮತ್ತು ಪ್ರಮುಖ ದಾಖಲೆಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿ.",
     personalIdAccess: "ವೈಯಕ್ತಿಕ ಐಡಿ ಪ್ರವೇಶ",
     openDigiLockerBtn: "ಡಿಜಿಲಾಕರ್ ತೆರೆಯಿರಿ",
     accessVerifiedDocsTitle: "ಪರಿಶೀಲಿಸಿದ ಸರ್ಕಾರಿ ದಾಖಲೆಗಳನ್ನು ಪ್ರವೇಶಿಸಿ",

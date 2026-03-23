@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   FileText, 
   Landmark, 
@@ -9,11 +9,16 @@ import {
   ArrowRight 
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useUser } from "../context/UserContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import LoginModal from "../components/LoginModal";
 
 function Home() {
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
+  const { user } = useUser();
+  const navigate = useNavigate();
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const services = [
     {
@@ -58,11 +63,21 @@ function Home() {
     }
   ];
 
+  const handleGetStarted = () => {
+    if (user) {
+      // If already logged in, scroll to services
+      const servicesSection = document.getElementById('services');
+      servicesSection?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setIsLoginOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-brand-surface">
       <Header />
 
-      {/* Hero Section - Indian Tricolor Theme */}
+      {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-saffron via-white to-brand-green text-gray-800 py-24 px-6 relative overflow-hidden text-center border-b border-gray-100">
         <div className="absolute top-0 right-0 w-64 h-64 bg-brand-saffron/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-green/10 rounded-full -ml-24 -mb-24 blur-2xl"></div>
@@ -79,14 +94,17 @@ function Home() {
             {t.heroDesc}
           </p>
 
-          <button className="btn-primary px-10 py-4 text-lg shadow-lg shadow-brand-saffron/30">
-            {t.getStarted}
+          <button 
+            onClick={handleGetStarted}
+            className="btn-primary px-10 py-4 text-lg shadow-lg shadow-brand-saffron/30"
+          >
+            {user ? `${t.welcomeBack}, ${user.name || user.mobile}` : t.getStarted}
           </button>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="max-w-6xl mx-auto py-20 px-6">
+      <section id="services" className="max-w-6xl mx-auto py-20 px-6">
         <div className="text-center mb-16">
           <h3 className="text-3xl md:text-4xl font-display font-bold text-brand-navy mb-4">
             {t.availableServices}
@@ -119,6 +137,7 @@ function Home() {
         </div>
       </section>
 
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
       <Footer />
     </div>
   );

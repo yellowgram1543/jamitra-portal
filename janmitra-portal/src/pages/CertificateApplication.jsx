@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { 
   ClipboardSignature, 
-  User, 
+  User as UserIcon, 
   Hash, 
   Phone, 
   MapPin, 
@@ -18,6 +18,7 @@ import {
   IndianRupee
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useUser } from "../context/UserContext";
 import { API_BASE_URL } from "../config";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -25,6 +26,7 @@ import Footer from "../components/Footer";
 function CertificateApplication() {
 
   const { t } = useLanguage();
+  const { user } = useUser();
 
   const [step, setStep] = useState(1);
   const totalSteps = 5;
@@ -78,6 +80,18 @@ function CertificateApplication() {
     document: null
   });
 
+  // Pre-fill user data if logged in
+  useEffect(() => {
+    if (user) {
+      setFormData(prev => ({
+        ...prev,
+        mobile: user.mobile || prev.mobile,
+        name: user.name || prev.name,
+        aadhaar: user.aadhaar || prev.aadhaar
+      }));
+    }
+  }, [user]);
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -104,11 +118,12 @@ function CertificateApplication() {
       case 1: return formData.certificateType !== "";
       case 2: return formData.name !== "" && formData.fatherHusbandName !== "" && formData.gender !== "" && formData.dateOfBirth !== "" && formData.aadhaar.length === 12 && formData.mobile.length === 10;
       case 3: {
-        if (formData.certificateType === t.incomeCert) return formData.occupation !== "" && formData.annualIncome !== "" && formData.incomeSource !== "";
-        if (formData.certificateType === t.casteCert) return formData.caste !== "" && formData.subCaste !== "" && formData.category !== "";
-        if (formData.certificateType === t.birthCert) return formData.childName !== "" && formData.birthTime !== "" && formData.birthPlace !== "" && formData.motherName !== "";
-        if (formData.certificateType === t.deathCert) return formData.deceasedName !== "" && formData.dateOfDeath !== "" && formData.causeOfDeath !== "" && formData.applicantRelation !== "";
-        if (formData.certificateType === t.landRecord) return formData.surveyNumber !== "" && formData.landType !== "" && formData.areaSize !== "" && formData.ownerName !== "";
+        const type = formData.certificateType;
+        if (type === t.incomeCert) return formData.occupation !== "" && formData.annualIncome !== "" && formData.incomeSource !== "";
+        if (type === t.casteCert) return formData.caste !== "" && formData.subCaste !== "" && formData.category !== "";
+        if (type === t.birthCert) return formData.childName !== "" && formData.birthTime !== "" && formData.birthPlace !== "" && formData.motherName !== "";
+        if (type === t.deathCert) return formData.deceasedName !== "" && formData.dateOfDeath !== "" && formData.causeOfDeath !== "" && formData.applicantRelation !== "";
+        if (type === t.landRecord) return formData.surveyNumber !== "" && formData.landType !== "" && formData.areaSize !== "" && formData.ownerName !== "";
         return true;
       }
       case 4: return formData.village !== "" && formData.taluk !== "" && formData.district !== "" && formData.state !== "" && formData.pinCode !== "";
@@ -403,7 +418,7 @@ function CertificateApplication() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                          <User size={16} className="text-brand-navy" /> {t.fullName}
+                          <UserIcon size={16} className="text-brand-navy" /> {t.fullName}
                         </label>
                         <input type="text" name="name" value={formData.name} onChange={handleChange} className="input-field" required />
                       </div>
