@@ -24,6 +24,11 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     required: [true, "Certificate type is required"]
   },
+  // Dynamic details based on certificate type
+  details: {
+    type: Map,
+    of: String
+  },
   document: {
     type: String,
     required: [true, "Document upload is required"]

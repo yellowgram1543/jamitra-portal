@@ -6,8 +6,24 @@ const router = express.Router();
 
 router.post("/", upload.single("document"), async (req, res) => {
   try {
+    // Extract base fields
+    const { name, aadhaar, mobile, address, certificateType } = req.body;
+    
+    // Extract everything else as details
+    const details = { ...req.body };
+    delete details.name;
+    delete details.aadhaar;
+    delete details.mobile;
+    delete details.address;
+    delete details.certificateType;
+
     const applicationData = {
-      ...req.body,
+      name,
+      aadhaar,
+      mobile,
+      address,
+      certificateType,
+      details,
       document: req.file ? req.file.path : null
     };
 
